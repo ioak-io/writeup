@@ -169,6 +169,7 @@ function BlockFormatDropDown({
   };
 
   const formatHeading = (headingSize: HeadingTagType) => {
+    console.log("****", headingSize, blockType);
     if (blockType !== headingSize) {
       editor.update(() => {
         const selection = $getSelection();
@@ -176,6 +177,7 @@ function BlockFormatDropDown({
           $isRangeSelection(selection) ||
           DEPRECATED_$isGridSelection(selection)
         ) {
+          console.log(selection);
           $setBlocksType(selection, () => $createHeadingNode(headingSize));
         }
       });
