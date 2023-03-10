@@ -1,0 +1,9 @@
+@import '../index.css';
+
+.basicui-light {
+    color: var(--theme-black-900);
+}
+
+.basicui-dark {
+    color: var(--theme-white-50);
+}
