@@ -1,6 +1,6 @@
 import { themes } from '@storybook/theming';
 import './style.css';
-import '../src/styles/index.css';
+// import '../src/styles/index.css';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -22,8 +22,8 @@ export const parameters = {
       ...themes.normal, appBg: '#fcfcfc'
       // , brandImage: "https://oakui.ioak.io/95e2684ee1b1f201fe4fc534e3859336.svg" 
     },
-    darkClass: 'basicui-dark',
-    lightClass: 'basicui-light',
+    darkClass: 'writeup-dark',
+    lightClass: 'writeup-light',
     stylePreview: true,
     classTarget: 'html'
   }
