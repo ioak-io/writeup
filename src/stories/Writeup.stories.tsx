@@ -103,42 +103,43 @@ export const FullEditor = () => {
           <TableContext>
             <SharedAutocompleteContext>
               <ToolbarPlugin />
-              <div className="editor-shell"><div
-                className={`editor-container ${showTreeView ? 'tree-view' : ''} ${!isRichText ? 'plain-text' : ''
-                  }`}>
-                <RichTextPlugin
-                  contentEditable={
-                    <div className="editor-scroller">
-                      <div className="editor" ref={onRef}>
-                        <ContentEditable />
-                      </div>
-                    </div>
-                  }
-                  placeholder={placeholder}
-                  ErrorBoundary={LexicalErrorBoundary}
-                />
-                <ListPlugin />
-                <CheckListPlugin />
-                <ListMaxIndentLevelPlugin maxDepth={7} />
-                <TablePlugin />
-                <TableCellResizerPlugin />
-                <NewTablePlugin cellEditorConfig={cellEditorConfig}>
-                  <AutoFocusPlugin />
+              <div className="editor-shell">
+                <div
+                  className={`editor-container ${showTreeView ? 'tree-view' : ''} ${!isRichText ? 'plain-text' : ''
+                    }`}>
                   <RichTextPlugin
                     contentEditable={
-                      <ContentEditable className="TableNode__contentEditable" />
+                      <div className="editor-scroller">
+                        <div className="editor" ref={onRef}>
+                          <ContentEditable />
+                        </div>
+                      </div>
                     }
-                    placeholder={null}
+                    placeholder={placeholder}
                     ErrorBoundary={LexicalErrorBoundary}
                   />
-                  <NewMentionsPlugin />
-                  <HistoryPlugin />
-                  <ImagesPlugin captionsEnabled={false} />
-                  <LinkPlugin />
-                  <ClickableLinkPlugin />
-                  <FloatingTextFormatToolbarPlugin />
-                </NewTablePlugin>
-              </div>
+                  <ListPlugin />
+                  <CheckListPlugin />
+                  <ListMaxIndentLevelPlugin maxDepth={7} />
+                  <TablePlugin />
+                  <TableCellResizerPlugin />
+                  <NewTablePlugin cellEditorConfig={cellEditorConfig}>
+                    <AutoFocusPlugin />
+                    <RichTextPlugin
+                      contentEditable={
+                        <ContentEditable className="TableNode__contentEditable" />
+                      }
+                      placeholder={null}
+                      ErrorBoundary={LexicalErrorBoundary}
+                    />
+                    <NewMentionsPlugin />
+                    <HistoryPlugin />
+                    <ImagesPlugin captionsEnabled={false} />
+                    <LinkPlugin />
+                    <ClickableLinkPlugin />
+                    <FloatingTextFormatToolbarPlugin />
+                  </NewTablePlugin>
+                </div>
               </div>
             </SharedAutocompleteContext>
           </TableContext>

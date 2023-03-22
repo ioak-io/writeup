@@ -1,0 +1,23 @@
+.basicui-light {
+    --theme-danger-transparent-50 : #fc374b10;
+    --theme-danger-transparent-100: #fc374b20;
+    --theme-danger-transparent-200: #fc374b30;
+    --theme-danger-transparent-300: #fc374b40;
+    --theme-danger-transparent-400: #fc374b50;
+    --theme-danger-transparent-500: #fc374b60;
+    --theme-danger-transparent-600: #fc374b70;
+    --theme-danger-transparent-700: #fc374b80;
+    --theme-danger-transparent-800: #fc374b90;
+    --theme-danger-transparent-900: #fc374ba0;
+    
+    --theme-danger-transparent-50i: #000;
+    --theme-danger-transparent-100i: #000;
+    --theme-danger-transparent-200i: #000;
+    --theme-danger-transparent-300i: #000;
+    --theme-danger-transparent-400i: #000;
+    --theme-danger-transparent-500i: #000;
+    --theme-danger-transparent-600i: #000;
+    --theme-danger-transparent-700i: #000;
+    --theme-danger-transparent-800i: #000;
+    --theme-danger-transparent-900i: #000;
+}
