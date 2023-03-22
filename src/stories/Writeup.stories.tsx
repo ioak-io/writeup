@@ -1,25 +1,4 @@
 import React, { useRef, useState } from 'react';
-import ToolbarPlugin from '../plugins/ToolbarPlugin/ToolbarPlugin';
-
-import {
-  AlignDropdown,
-  BackgroundColorPicker,
-  BlockFormatDropdown,
-  BoldButton,
-  CodeFormatButton,
-  CodeLanguageDropdown,
-  FloatingLinkEditor,
-  FontFamilyDropdown,
-  FontSizeDropdown,
-  InsertDropdown,
-  InsertLinkButton,
-  ItalicButton,
-  RedoButton,
-  TextColorPicker,
-  TextFormatDropdown,
-  UnderlineButton,
-  UndoButton,
-} from '../plugins/ToolbarPlugin/components';
 import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 import EditorComposer from '../EditorComposer';
 import Editor from '../Editor';
@@ -28,16 +7,29 @@ import { SharedAutocompleteContext } from '../context/SharedAutocompleteContext'
 import { TableContext } from '../plugins/TablePlugin';
 import { SharedHistoryContext, useSharedHistoryContext } from '../context/SharedHistoryContext';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import Settings from '../Settings';
 import PlaygroundNodes from '../nodes/PlaygroundNodes';
 import PlaygroundEditorTheme from '../themes/PlaygroundEditorTheme';
-import EditorContext from '../context/EditorContext';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import Placeholder from '../ui/Placeholder';
 import { SettingsContext, useSettings } from '../context/SettingsContext';
+import ToolbarPlugin from '../plugins/ToolbarPlugin';
+import '../style.css';
+import { ListPlugin } from '@lexical/react/LexicalListPlugin';
+import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin';
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
+import ListMaxIndentLevelPlugin from '../plugins/ListMaxIndentLevelPlugin';
+import TableCellResizerPlugin from '../plugins/TableCellResizer';
+import { TablePlugin as NewTablePlugin } from '../plugins/TablePlugin';
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
+import NewMentionsPlugin from '../plugins/MentionsPlugin';
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
+import ImagesPlugin from '../plugins/ImagesPlugin';
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
+import ClickableLinkPlugin from '../plugins/ClickableLinkPlugin';
+import FloatingTextFormatToolbarPlugin from '../plugins/FloatingTextFormatToolbarPlugin';
+import TableCellNodes from '../nodes/TableCellNodes';
 
 export default {
   title: 'Writeup',
@@ -95,13 +87,22 @@ export const FullEditor = () => {
     theme: PlaygroundEditorTheme,
   };
 
+  const cellEditorConfig = {
+    namespace: 'Playground',
+    nodes: [...TableCellNodes],
+    onError: (error: Error) => {
+      throw error;
+    },
+    theme: PlaygroundEditorTheme,
+  };
+
   return (
     <SettingsContext>
       <LexicalComposer initialConfig={initialConfig}>
         <SharedHistoryContext>
           <TableContext>
             <SharedAutocompleteContext>
-              {/* <ToolbarPlugin /> */}
+              <ToolbarPlugin />
               <div className="editor-shell"><div
                 className={`editor-container ${showTreeView ? 'tree-view' : ''} ${!isRichText ? 'plain-text' : ''
                   }`}>
@@ -116,11 +117,33 @@ export const FullEditor = () => {
                   placeholder={placeholder}
                   ErrorBoundary={LexicalErrorBoundary}
                 />
+                <ListPlugin />
+                <CheckListPlugin />
+                <ListMaxIndentLevelPlugin maxDepth={7} />
+                <TablePlugin />
+                <TableCellResizerPlugin />
+                <NewTablePlugin cellEditorConfig={cellEditorConfig}>
+                  <AutoFocusPlugin />
+                  <RichTextPlugin
+                    contentEditable={
+                      <ContentEditable className="TableNode__contentEditable" />
+                    }
+                    placeholder={null}
+                    ErrorBoundary={LexicalErrorBoundary}
+                  />
+                  <NewMentionsPlugin />
+                  <HistoryPlugin />
+                  <ImagesPlugin captionsEnabled={false} />
+                  <LinkPlugin />
+                  <ClickableLinkPlugin />
+                  <FloatingTextFormatToolbarPlugin />
+                </NewTablePlugin>
               </div>
               </div>
             </SharedAutocompleteContext>
           </TableContext>
         </SharedHistoryContext>
-      </LexicalComposer></SettingsContext>
+      </LexicalComposer>
+    </SettingsContext>
   )
 };
