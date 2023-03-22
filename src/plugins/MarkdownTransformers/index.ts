@@ -46,8 +46,8 @@ import {
   $isEquationNode,
   EquationNode,
 } from '../../nodes/EquationNode';
-import {$createImageNode, $isImageNode, ImageNode} from '../../nodes/ImageNode';
-import {$createTweetNode, $isTweetNode, TweetNode} from '../../nodes/TweetNode';
+import { $createImageNode, $isImageNode, ImageNode } from '../../nodes/ImageNode';
+import { $createTweetNode, $isTweetNode, TweetNode } from '../../nodes/TweetNode';
 import emojiList from '../../utils/emoji-list';
 
 export const HR: ElementTransformer = {
@@ -172,7 +172,8 @@ export const TABLE: ElementTransformer = {
         // It's TableCellNode so it's just to make flow happy
         if ($isTableCellNode(cell)) {
           rowOutput.push(
-            $convertToMarkdownString(PLAYGROUND_TRANSFORMERS, cell).replace(
+            // $convertToMarkdownString(PLAYGROUND_TRANSFORMERS, cell).replace(
+            $convertToMarkdownString(PLAYGROUND_TRANSFORMERS).replace(
               /\n/g,
               '\\n',
             ),
@@ -292,7 +293,7 @@ function getTableColumnsSize(table: TableNode) {
 const createTableCell = (textContent: string): TableCellNode => {
   textContent = textContent.replace(/\\n/g, '\n');
   const cell = $createTableCellNode(TableCellHeaderStates.NO_STATUS);
-  $convertFromMarkdownString(textContent, PLAYGROUND_TRANSFORMERS, cell);
+  $convertFromMarkdownString(textContent, PLAYGROUND_TRANSFORMERS);
   return cell;
 };
 

@@ -39,7 +39,7 @@ export const SharedAutocompleteContext = ({
 }): JSX.Element => {
   const context: ContextShape = useMemo(() => {
     let suggestion: Suggestion | null = null;
-    const listeners: Set<CallbackFn> = new Set();
+    const listeners: Set<CallbackFn> | any = new Set();
     return [
       (cb: (newSuggestion: Suggestion) => void) => {
         cb(suggestion);

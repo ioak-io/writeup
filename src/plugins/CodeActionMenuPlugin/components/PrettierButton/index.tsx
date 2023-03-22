@@ -22,7 +22,7 @@ interface Props {
 const PRETTIER_PARSER_MODULES = {
   css: () => import('prettier/parser-postcss'),
   html: () => import('prettier/parser-html'),
-  js: () => import('prettier/parser-babel'),
+  // js: () => import('prettier/parser-babel'),
   markdown: () => import('prettier/parser-markdown'),
 } as const;
 

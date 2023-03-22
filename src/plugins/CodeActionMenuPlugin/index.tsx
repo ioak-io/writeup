@@ -109,7 +109,7 @@ function CodeActionMenuContainer({
     };
   }, [shouldListenMouseMove, debouncedOnMouseMove]);
 
-  editor.registerMutationListener(CodeNode, (mutations) => {
+  editor.registerMutationListener(CodeNode, (mutations: any) => {
     editor.getEditorState().read(() => {
       for (const [key, type] of mutations) {
         switch (type) {

@@ -28,8 +28,8 @@ export const IS_FIREFOX: boolean =
   CAN_USE_DOM && /^(?!.*Seamonkey)(?=.*Firefox).*/i.test(navigator.userAgent);
 
 export const CAN_USE_BEFORE_INPUT: boolean =
-  CAN_USE_DOM && 'InputEvent' in window && !documentMode
-    ? 'getTargetRanges' in new window.InputEvent('input')
+  CAN_USE_DOM && 'InputEvent' in (window as any) && !documentMode
+    ? 'getTargetRanges' in new (window as any).InputEvent('input')
     : false;
 
 export const IS_SAFARI: boolean =

@@ -72,7 +72,6 @@ import * as React from 'react';
 import {IS_APPLE} from '../../shared/src/environment';
 
 import useModal from '../../hooks/useModal';
-import catTypingGif from '../../images/cat-typing.gif';
 import {$createStickyNode} from '../../nodes/StickyNode';
 import ColorPicker from '../../ui/ColorPicker';
 import DropDown, {DropDownItem} from '../../ui/DropDown';
@@ -823,17 +822,6 @@ export default function ToolbarPlugin(): JSX.Element {
               <span className="text">Image</span>
             </DropDownItem>
             <DropDownItem
-              onClick={() =>
-                insertGifOnClick({
-                  altText: 'Cat typing on a laptop',
-                  src: catTypingGif,
-                })
-              }
-              className="item">
-              <i className="icon gif" />
-              <span className="text">GIF</span>
-            </DropDownItem>
-            <DropDownItem
               onClick={() => {
                 activeEditor.dispatchCommand(
                   INSERT_EXCALIDRAW_COMMAND,
@@ -856,19 +844,6 @@ export default function ToolbarPlugin(): JSX.Element {
               className="item">
               <i className="icon table" />
               <span className="text">Table</span>
-            </DropDownItem>
-            <DropDownItem
-              onClick={() => {
-                showModal('Insert Table', (onClose) => (
-                  <InsertNewTableDialog
-                    activeEditor={activeEditor}
-                    onClose={onClose}
-                  />
-                ));
-              }}
-              className="item">
-              <i className="icon table" />
-              <span className="text">Table (Experimental)</span>
             </DropDownItem>
             <DropDownItem
               onClick={() => {
@@ -897,7 +872,7 @@ export default function ToolbarPlugin(): JSX.Element {
               <i className="icon equation" />
               <span className="text">Equation</span>
             </DropDownItem>
-            <DropDownItem
+            {/* <DropDownItem
               onClick={() => {
                 editor.update(() => {
                   const root = $getRoot();
@@ -908,7 +883,7 @@ export default function ToolbarPlugin(): JSX.Element {
               className="item">
               <i className="icon sticky" />
               <span className="text">Sticky Note</span>
-            </DropDownItem>
+            </DropDownItem> */}
             <DropDownItem
               onClick={() => {
                 editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined);

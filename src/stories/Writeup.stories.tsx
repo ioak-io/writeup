@@ -44,8 +44,6 @@ import EmojisPlugin from '../plugins/EmojisPlugin';
 import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin';
 import KeywordsPlugin from '../plugins/KeywordsPlugin';
 import SpeechToTextPlugin from '../plugins/SpeechToTextPlugin';
-import CommentPlugin from '../plugins/CommentPlugin';
-import AutoLinkPlugin from '../plugins/AutoLinkPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import CodeHighlightPlugin from '../plugins/CodeHighlightPlugin';
 import TabFocusPlugin from '../plugins/TabFocusPlugin';
@@ -90,7 +88,7 @@ export const FullEditor = () => {
     }
   };
   const {
-    settings: { emptyEditor, measureTypingPerf },
+    settings: { emptyEditor },
   } = useSettings();
 
   const initialConfig = {

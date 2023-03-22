@@ -149,7 +149,7 @@ export const FigmaEmbedConfig: PlaygroundEmbedConfig = {
 export const EmbedConfigs = [
   TwitterEmbedConfig,
   YoutubeEmbedConfig,
-  FigmaEmbedConfig,
+  // FigmaEmbedConfig,
 ];
 
 function AutoEmbedMenuItem({

@@ -9,14 +9,10 @@
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import useLexicalEditable from '@lexical/react/useLexicalEditable';
 import {
-  $deleteTableColumn__EXPERIMENTAL,
-  $deleteTableRow__EXPERIMENTAL,
   $getTableCellNodeFromLexicalNode,
   $getTableColumnIndexFromTableCellNode,
   $getTableNodeFromLexicalNodeOrThrow,
   $getTableRowIndexFromTableCellNode,
-  $insertTableColumn__EXPERIMENTAL,
-  $insertTableRow__EXPERIMENTAL,
   $isTableCellNode,
   $isTableRowNode,
   getTableSelectionFromTableElement,
@@ -35,7 +31,7 @@ import {
 import * as React from 'react';
 import {ReactPortal, useCallback, useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
-import invariant from '../shared/src/invariant';
+import invariant from '../../shared/src/invariant';
 
 function computeSelectionCount(selection: GridSelection): {
   columns: number;
@@ -217,7 +213,7 @@ function TableActionMenu({
                 lastDescendant !== null,
                 'Unexpected empty lastDescendant on the resulting merged cell',
               );
-              lastDescendant.select();
+              lastDescendant?.select();
               isFirstCell = false;
             } else {
               nodes[i].remove();
@@ -232,7 +228,7 @@ function TableActionMenu({
   const insertTableRowAtSelection = useCallback(
     (shouldInsertAfter: boolean) => {
       editor.update(() => {
-        $insertTableRow__EXPERIMENTAL(shouldInsertAfter);
+        // $insertTableRow__EXPERIMENTAL(shouldInsertAfter);
         onClose();
       });
     },
@@ -242,7 +238,7 @@ function TableActionMenu({
   const insertTableColumnAtSelection = useCallback(
     (shouldInsertAfter: boolean) => {
       editor.update(() => {
-        $insertTableColumn__EXPERIMENTAL(shouldInsertAfter);
+        // $insertTableColumn__EXPERIMENTAL(shouldInsertAfter);
         onClose();
       });
     },
@@ -251,7 +247,7 @@ function TableActionMenu({
 
   const deleteTableRowAtSelection = useCallback(() => {
     editor.update(() => {
-      $deleteTableRow__EXPERIMENTAL();
+      // $deleteTableRow__EXPERIMENTAL();
       onClose();
     });
   }, [editor, onClose]);
@@ -268,7 +264,7 @@ function TableActionMenu({
 
   const deleteTableColumnAtSelection = useCallback(() => {
     editor.update(() => {
-      $deleteTableColumn__EXPERIMENTAL();
+      // $deleteTableColumn__EXPERIMENTAL();
       onClose();
     });
   }, [editor, onClose]);

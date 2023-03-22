@@ -28,7 +28,7 @@ function readTouch(e: TouchEvent): [number, number] | null {
 function addListener(element: HTMLElement, cb: Listener): () => void {
   let elementValues = elements.get(element);
   if (elementValues === undefined) {
-    const listeners = new Set<Listener>();
+    const listeners: any = new Set<Listener>();
     const handleTouchstart = (e: TouchEvent) => {
       if (elementValues !== undefined) {
         elementValues.start = readTouch(e);
