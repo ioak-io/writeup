@@ -22,8 +22,8 @@ export const parameters = {
       ...themes.normal, appBg: '#fcfcfc'
       // , brandImage: "https://oakui.ioak.io/95e2684ee1b1f201fe4fc534e3859336.svg" 
     },
-    darkClass: 'writeup-dark',
-    lightClass: 'writeup-light',
+    darkClass: 'basicui-dark',
+    lightClass: 'basicui-light',
     stylePreview: true,
     classTarget: 'html'
   }

@@ -1,47 +1,39 @@
-import EditorComposer from './EditorComposer';
-import Editor from './Editor';
-import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin';
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
 
-import {
-  AlignDropdown,
-  BackgroundColorPicker,
-  BlockFormatDropdown,
-  BoldButton,
-  CodeFormatButton,
-  CodeLanguageDropdown,
-  FloatingLinkEditor,
-  FontFamilyDropdown,
-  FontSizeDropdown,
-  InsertDropdown,
-  InsertLinkButton,
-  ItalicButton,
-  RedoButton,
-  TextColorPicker,
-  TextFormatDropdown,
-  UnderlineButton,
-  UndoButton,
-} from './plugins/ToolbarPlugin/components';
+import './setupEnv';
+import './index.css';
 
-import * as ToolbarTypes from './types';
-import Divider from './ui/Divider';
+import * as React from 'react';
+import {createRoot} from 'react-dom/client';
 
-export {
-  EditorComposer,
-  Editor,
-  ToolbarPlugin,
-  AlignDropdown,
-  BackgroundColorPicker,
-  BoldButton,
-  CodeFormatButton,
-  FloatingLinkEditor,
-  FontFamilyDropdown,
-  FontSizeDropdown,
-  InsertDropdown,
-  InsertLinkButton,
-  ItalicButton,
-  TextColorPicker,
-  TextFormatDropdown,
-  UnderlineButton,
-  ToolbarTypes,
-  Divider,
+import App from './App';
+
+// Handle runtime errors
+const showErrorOverlay = (err: Event) => {
+  const ErrorOverlay = customElements.get('vite-error-overlay');
+  if (!ErrorOverlay) {
+    return;
+  }
+  const overlay = new ErrorOverlay(err);
+  const body = document.body;
+  if (body !== null) {
+    body.appendChild(overlay);
+  }
 };
+
+window.addEventListener('error', showErrorOverlay);
+window.addEventListener('unhandledrejection', ({reason}) =>
+  showErrorOverlay(reason),
+);
+
+createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

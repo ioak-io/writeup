@@ -6,12 +6,12 @@
  *
  */
 
-import type { LexicalEditor } from 'lexical';
+import type {LexicalEditor} from 'lexical';
 
 import * as React from 'react';
-import { useRef } from 'react';
+import {useRef} from 'react';
 
-function clamp(value, min, max) {
+function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
@@ -25,21 +25,29 @@ const Direction = {
 export default function ImageResizer({
   onResizeStart,
   onResizeEnd,
+  buttonRef,
   imageRef,
   maxWidth,
   editor,
   showCaption,
   setShowCaption,
+  captionsEnabled,
 }: {
   editor: LexicalEditor;
-  imageRef: { current: null | HTMLElement };
+  buttonRef: {current: null | HTMLButtonElement};
+  imageRef: {current: null | HTMLElement};
   maxWidth?: number;
   onResizeEnd: (width: 'inherit' | number, height: 'inherit' | number) => void;
   onResizeStart: () => void;
-  setShowCaption: (boolean) => void;
+  setShowCaption: (show: boolean) => void;
   showCaption: boolean;
+  captionsEnabled: boolean;
 }): JSX.Element {
-  const buttonRef = useRef(null);
+  const controlWrapperRef = useRef<HTMLDivElement>(null);
+  const userSelect = useRef({
+    priority: '',
+    value: 'default',
+  });
   const positioningRef = useRef<{
     currentHeight: 'inherit' | number;
     currentWidth: 'inherit' | number;
@@ -89,14 +97,25 @@ export default function ImageResizer({
       editorRootElement.style.setProperty(
         'cursor',
         `${cursorDir}-resize`,
-        'important'
+        'important',
       );
     }
     if (document.body !== null) {
       document.body.style.setProperty(
         'cursor',
         `${cursorDir}-resize`,
-        'important'
+        'important',
+      );
+      userSelect.current.value = document.body.style.getPropertyValue(
+        '-webkit-user-select',
+      );
+      userSelect.current.priority = document.body.style.getPropertyPriority(
+        '-webkit-user-select',
+      );
+      document.body.style.setProperty(
+        '-webkit-user-select',
+        `none`,
+        'important',
       );
     }
   };
@@ -107,16 +126,27 @@ export default function ImageResizer({
     }
     if (document.body !== null) {
       document.body.style.setProperty('cursor', 'default');
+      document.body.style.setProperty(
+        '-webkit-user-select',
+        userSelect.current.value,
+        userSelect.current.priority,
+      );
     }
   };
 
   const handlePointerDown = (
     event: React.PointerEvent<HTMLDivElement>,
-    direction: number
+    direction: number,
   ) => {
+    if (!editor.isEditable()) {
+      return;
+    }
+
     const image = imageRef.current;
-    if (image !== null) {
-      const { width, height } = image.getBoundingClientRect();
+    const controlWrapper = controlWrapperRef.current;
+
+    if (image !== null && controlWrapper !== null) {
+      const {width, height} = image.getBoundingClientRect();
       const positioning = positioningRef.current;
       positioning.startWidth = width;
       positioning.startHeight = height;
@@ -131,6 +161,7 @@ export default function ImageResizer({
       setStartCursor(direction);
       onResizeStart();
 
+      controlWrapper.classList.add('image-control-wrapper--resizing');
       image.style.height = `${height}px`;
       image.style.width = `${width}px`;
 
@@ -156,7 +187,7 @@ export default function ImageResizer({
         const width = clamp(
           positioning.startWidth + diff,
           minWidth,
-          maxWidthContainer
+          maxWidthContainer,
         );
 
         const height = width / positioning.ratio;
@@ -171,7 +202,7 @@ export default function ImageResizer({
         const height = clamp(
           positioning.startHeight + diff,
           minHeight,
-          maxHeightContainer
+          maxHeightContainer,
         );
 
         image.style.height = `${height}px`;
@@ -183,7 +214,7 @@ export default function ImageResizer({
         const width = clamp(
           positioning.startWidth + diff,
           minWidth,
-          maxWidthContainer
+          maxWidthContainer,
         );
 
         image.style.width = `${width}px`;
@@ -194,7 +225,8 @@ export default function ImageResizer({
   const handlePointerUp = () => {
     const image = imageRef.current;
     const positioning = positioningRef.current;
-    if (image !== null && positioning.isResizing) {
+    const controlWrapper = controlWrapperRef.current;
+    if (image !== null && controlWrapper !== null && positioning.isResizing) {
       const width = positioning.currentWidth;
       const height = positioning.currentHeight;
       positioning.startWidth = 0;
@@ -206,6 +238,8 @@ export default function ImageResizer({
       positioning.currentHeight = 0;
       positioning.isResizing = false;
 
+      controlWrapper.classList.remove('image-control-wrapper--resizing');
+
       setEndCursor();
       onResizeEnd(width, height);
 
@@ -214,15 +248,14 @@ export default function ImageResizer({
     }
   };
   return (
-    <>
-      {!showCaption && (
+    <div ref={controlWrapperRef}>
+      {!showCaption && captionsEnabled && (
         <button
           className="image-caption-button"
           ref={buttonRef}
           onClick={() => {
             setShowCaption(!showCaption);
-          }}
-        >
+          }}>
           Add Caption
         </button>
       )}
@@ -274,6 +307,6 @@ export default function ImageResizer({
           handlePointerDown(event, Direction.north | Direction.west);
         }}
       />
-    </>
+    </div>
   );
 }

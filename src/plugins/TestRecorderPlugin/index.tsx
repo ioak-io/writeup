@@ -17,8 +17,8 @@ import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {$createParagraphNode, $createTextNode, $getRoot} from 'lexical';
 import * as React from 'react';
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {IS_APPLE} from '../../shared/src/environment';
-import useLayoutEffectImpl from '../../shared/src/useLayoutEffect';
+import {IS_APPLE} from '../shared/src/environment';
+import useLayoutEffect from '../shared/src/useLayoutEffect';
 
 const copy = (text: string | null) => {
   const textArea = document.createElement('textarea');
@@ -249,7 +249,7 @@ ${steps.map(formatStep).join(`\n`)}
     [steps, setSteps],
   );
 
-  useLayoutEffectImpl(() => {
+  useLayoutEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (!isRecording) {
         return;

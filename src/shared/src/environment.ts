@@ -6,7 +6,7 @@
  *
  */
 
-import {CAN_USE_DOM} from '../../shared/src/canUseDOM';
+import {CAN_USE_DOM} from './canUseDOM';
 
 declare global {
   interface Document {

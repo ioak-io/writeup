@@ -1,7 +1,5 @@
-*.log
-.DS_Store
 node_modules
-.cache
-dist
-src/App.tsx
-TSDX_GUIDE.md
+lib
+lib/*
+storybook-static
+storybook-static/*
