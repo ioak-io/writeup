@@ -1,5 +1,3 @@
-import ToolbarPlugin from './plugins/ToolbarPlugin';
+import ToolbarPlugin from "./plugins/ToolbarPlugin";
 
-export {
-    ToolbarPlugin
-};
+export { ToolbarPlugin };
