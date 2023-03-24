@@ -183,6 +183,9 @@ const Toolbar = ({ editor }: any) => {
                 purple
             </button>
             <button onClick={addImage}>setImage</button>
+            <button onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>
+                table
+            </button>
         </div>
     )
 }
