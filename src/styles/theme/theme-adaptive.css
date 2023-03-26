@@ -1,4 +1,4 @@
-.basicui-light {
+.writeup-light {
     --theme-adaptive-900: var(--theme-white-900);
     --theme-adaptive-800: var(--theme-white-800);
     --theme-adaptive-700: var(--theme-white-700);
@@ -22,7 +22,7 @@
     --theme-adaptive-50i: var(--theme-white-50i);
 }
 
-.basicui-dark {
+.writeup-dark {
     --theme-adaptive-900: var(--theme-black-extended-700);
     --theme-adaptive-800: var(--theme-black-extended-800);
     --theme-adaptive-700: var(--theme-black-extended-900);

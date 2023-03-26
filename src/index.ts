@@ -1,3 +1,3 @@
-import ToolbarPlugin from "./plugins/ToolbarPlugin";
+import Editor from "./components/Editor";
 
-export { ToolbarPlugin };
+export { Editor }

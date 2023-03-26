@@ -15,10 +15,10 @@
 @import './theme-primary-light-transparent.css';
 @import './theme-primary-dark-transparent.css';
 
-.basicui-light {
+.writeup-light {
     color: var(--theme-black-900);
 }
 
-.basicui-dark {
+.writeup-dark {
     color: var(--theme-white-50);
 }
