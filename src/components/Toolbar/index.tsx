@@ -1,49 +1,56 @@
 import './style.css'
 
-import { Color } from '@tiptap/extension-color'
-import ListItem from '@tiptap/extension-list-item'
-import TextStyle from '@tiptap/extension-text-style'
-import { EditorContent, useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
 import React, { useEffect } from 'react'
+import { Editor } from 'slate'
 
 const Toolbar = ({ editor }: any) => {
-    const widthRef = React.useRef<any>(null)
-    const heightRef = React.useRef<any>(null)
-    if (!editor) {
-        return null
+
+    const getActiveStyles = () => {
+        return new Set(Object.keys(Editor.marks(editor) ?? {}));
     }
 
-    // useEffect(() => {
-    //     if (widthRef.current && heightRef.current) {
-    //         widthRef.current.value = 640
-    //         heightRef.current.value = 480
-    //     }
-    // }, [widthRef.current, heightRef.current])
-
-    const addYoutubeVideo = () => {
-        const url = prompt('Enter YouTube URL')
-
-        if (url) {
-            editor.commands.setYoutubeVideo({
-                src: url,
-                width: Math.max(320, parseInt(widthRef.current.value, 10)) || 640,
-                height: Math.max(180, parseInt(heightRef.current.value, 10)) || 480,
-            })
+    const toggleStyle = (style: string) => {
+        const activeStyles = getActiveStyles();
+        if (activeStyles.has(style)) {
+            Editor.removeMark(editor, style);
+        } else {
+            Editor.addMark(editor, style, true);
         }
     }
 
-    const addImage = () => {
-        const url = window.prompt('URL')
+    const toggleMark = (event: any, format: string) => {
+        event.preventDefault();
+        console.log(editor, format, isMarkActive(format));
+        const isActive = isMarkActive(format)
 
-        if (url) {
-            editor.chain().focus().setImage({ src: url }).run()
+        if (isActive) {
+            Editor.removeMark(editor, format)
+        } else {
+            console.log("**bolding");
+            Editor.addMark(editor, format, true)
         }
+    }
+
+    const isMarkActive = (format: string) => {
+        const marks: any = Editor.marks(editor)
+        return marks ? marks[format] === true : false
     }
 
     return (
         <div className="writeup-toolbar">
-            <input
+            <button
+                onClick={(event: any) => toggleStyle('bold')}
+            // className={editor?.isActive('bold') ? 'is-active' : ''}
+            >
+                B
+            </button>
+            <button
+                onClick={(event: any) => toggleStyle('h1')}
+            // className={editor?.isActive('bold') ? 'is-active' : ''}
+            >
+                H1
+            </button>
+            {/* <input
                 type="color"
                 onInput={(event: any) => editor.chain().focus().setColor(event.target.value).run()}
                 value={editor.getAttributes('textStyle').color}
@@ -240,7 +247,7 @@ const Toolbar = ({ editor }: any) => {
                 <button id="add" onClick={addYoutubeVideo}>Add YouTube video</button>
                 <input id="width" type="number" min="320" max="1024" ref={widthRef} placeholder="width" />
                 <input id="height" type="number" min="180" max="720" ref={heightRef} placeholder="height" />
-            </>
+            </> */}
         </div>
     )
 }
