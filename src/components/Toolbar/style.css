@@ -30,6 +30,11 @@
     color: var(--theme-white-200i);
 }
 
+.writeup-toolbar button.is-active {
+    background-color: var(--theme-white-300);
+    color: var(--theme-white-300i);
+}
+
 .writeup-dark .writeup-toolbar button {
     color: var(--theme-black-50i);
 }
@@ -40,6 +45,11 @@
     color: var(--theme-black-50i);
 }
 
+.writeup-dark .writeup-toolbar button.is-active {
+    background-color: var(--theme-black-100);
+    color: var(--theme-black-100i);
+}
+
 
 
 .ProseMirror {
@@ -48,6 +58,7 @@
     background-color: var(--theme-white-100);
     border-radius: 0 0 4px 4px;
 }
+
 .writeup-dark .ProseMirror {
     background-color: var(--theme-black-200);
 }

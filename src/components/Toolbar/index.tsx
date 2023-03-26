@@ -5,11 +5,32 @@ import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Toolbar = ({ editor }: any) => {
+    const widthRef = React.useRef<any>(null)
+    const heightRef = React.useRef<any>(null)
     if (!editor) {
         return null
+    }
+
+    // useEffect(() => {
+    //     if (widthRef.current && heightRef.current) {
+    //         widthRef.current.value = 640
+    //         heightRef.current.value = 480
+    //     }
+    // }, [widthRef.current, heightRef.current])
+
+    const addYoutubeVideo = () => {
+        const url = prompt('Enter YouTube URL')
+
+        if (url) {
+            editor.commands.setYoutubeVideo({
+                src: url,
+                width: Math.max(320, parseInt(widthRef.current.value, 10)) || 640,
+                height: Math.max(180, parseInt(heightRef.current.value, 10)) || 480,
+            })
+        }
     }
 
     const addImage = () => {
@@ -22,6 +43,11 @@ const Toolbar = ({ editor }: any) => {
 
     return (
         <div className="writeup-toolbar">
+            <input
+                type="color"
+                onInput={(event: any) => editor.chain().focus().setColor(event.target.value).run()}
+                value={editor.getAttributes('textStyle').color}
+            />
             <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 disabled={
@@ -60,7 +86,31 @@ const Toolbar = ({ editor }: any) => {
                 className={editor.isActive('strike') ? 'is-active' : ''}
             >
                 S
+            </button><button
+                onClick={() => editor.chain().focus().setTextAlign('left').run()}
+                className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+            >
+                left
             </button>
+            <button
+                onClick={() => editor.chain().focus().setTextAlign('center').run()}
+                className={editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
+            >
+                center
+            </button>
+            <button
+                onClick={() => editor.chain().focus().setTextAlign('right').run()}
+                className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
+            >
+                right
+            </button>
+            <button
+                onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+                className={editor.isActive({ textAlign: 'justify' }) ? 'is-active' : ''}
+            >
+                justify
+            </button>
+            <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button>
             <button
                 onClick={() => editor.chain().focus().toggleCode().run()}
                 disabled={
@@ -186,6 +236,11 @@ const Toolbar = ({ editor }: any) => {
             <button onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>
                 table
             </button>
+            <>
+                <button id="add" onClick={addYoutubeVideo}>Add YouTube video</button>
+                <input id="width" type="number" min="320" max="1024" ref={widthRef} placeholder="width" />
+                <input id="height" type="number" min="180" max="720" ref={heightRef} placeholder="height" />
+            </>
         </div>
     )
 }
