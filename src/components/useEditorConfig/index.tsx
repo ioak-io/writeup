@@ -18,6 +18,10 @@ function renderElement(props: any) {
       return <h3 {...attributes}>{children}</h3>;
     case "h4":
       return <h4 {...attributes}>{children}</h4>;
+    case "code":
+      return <pre {...attributes}>
+        <code>{children}</code>
+      </pre>;
     default:
       // For the default case, we delegate to Slate's default rendering. 
       return <DefaultElement {...props} />;

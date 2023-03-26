@@ -1,7 +1,7 @@
 import './style.css'
 
 import React, { useEffect } from 'react'
-import { Editor } from 'slate'
+import { Editor, Transforms } from 'slate'
 
 const Toolbar = ({ editor }: any) => {
 
@@ -10,12 +10,14 @@ const Toolbar = ({ editor }: any) => {
     }
 
     const toggleStyle = (style: string) => {
-        const activeStyles = getActiveStyles();
-        if (activeStyles.has(style)) {
-            Editor.removeMark(editor, style);
-        } else {
-            Editor.addMark(editor, style, true);
-        }
+            Editor.addMark(editor, 'bold', true);
+        // const activeStyles = getActiveStyles();
+        // console.log(activeStyles, style);
+        // if (activeStyles.has(style)) {
+        //     Editor.removeMark(editor, style);
+        // } else {
+        //     Editor.addMark(editor, style, true);
+        // }
     }
 
     const toggleMark = (event: any, format: string) => {
@@ -43,6 +45,12 @@ const Toolbar = ({ editor }: any) => {
             // className={editor?.isActive('bold') ? 'is-active' : ''}
             >
                 B
+            </button>
+            <button
+                onClick={(event: any) => toggleStyle('italic')}
+            // className={editor?.isActive('bold') ? 'is-active' : ''}
+            >
+                I
             </button>
             <button
                 onClick={(event: any) => toggleStyle('h1')}
