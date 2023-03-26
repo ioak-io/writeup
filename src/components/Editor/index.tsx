@@ -13,6 +13,8 @@ import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import Youtube from '@tiptap/extension-youtube'
+import Highlight from '@tiptap/extension-highlight'
+import Typography from '@tiptap/extension-typography'
 
 import './style.css';
 import Toolbar from '../Toolbar';
@@ -24,6 +26,8 @@ export type EditorProps = {
 const Editor = (props: EditorProps) => {
     const editor = useEditor({
         extensions: [
+            Highlight,
+            Typography,
             Document, Paragraph, Text, TextStyle, Color,
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
