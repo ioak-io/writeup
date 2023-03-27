@@ -1,9 +1,10 @@
 .writeup-dark {
     --writeup-background-color: var(--theme-black-200);
     --writeup-color: var(--theme-black-200i);
-    --writeup-border-color: var(--theme-black-500);
+    --writeup-border-color: var(--theme-black-50);
 
     --writeup-toolbar-button-background-color-hover: var(--theme-black-400);
+    --writeup-toolbar-button-background-color-active: var(--theme-black-500);
     --writeup-toolbar-button-background-color-active: var(--theme-black-500);
 
     --writeup-toolbar-button-color-hover: var(--theme-black-400i);

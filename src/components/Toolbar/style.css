@@ -161,12 +161,6 @@ input[type="color"]::-moz-color-swatch {
     color: var(--writeup-toolbar-button-color-active);
 }
 
-.writeup-dark .heading-select:hover,
-.writeup-dark .heading-select:focus {
-    background-color: var(--theme-black-50);
-    color: var(--theme-black-50i);
-}
-
 ul[data-type="taskList"] li {
     display: flex;
     flex-direction: row;
