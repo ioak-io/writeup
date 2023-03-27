@@ -189,3 +189,18 @@ input[type="color"]::-moz-color-swatch {
     background-color: var(--theme-black-50);
     color: var(--theme-black-50i);
 }
+
+ul[data-type="taskList"] li {
+    display: flex;
+    flex-direction: row;
+}
+
+ul[data-type="taskList"] li p {
+    margin: 0;
+}
+
+ul[data-type="taskList"] li input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border-radius: 0;
+}

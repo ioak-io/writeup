@@ -15,6 +15,8 @@ import TableRow from '@tiptap/extension-table-row'
 import Youtube from '@tiptap/extension-youtube'
 import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
+import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
 
 import './style.css';
 import Toolbar from '../Toolbar';
@@ -52,6 +54,20 @@ const Editor = (props: EditorProps) => {
             TableRow,
             TableHeader,
             TableCell,
+            Highlight.configure({
+                HTMLAttributes: {
+                    class: 'my-custom-class',
+                },
+                multicolor: true,
+            }),
+            TaskList.configure({
+                HTMLAttributes: {
+                    class: 'my-custom-class',
+                },
+            }),
+            TaskItem.configure({
+                nested: true,
+            }),
             StarterKit.configure({
                 bulletList: {
                     keepMarks: true,
