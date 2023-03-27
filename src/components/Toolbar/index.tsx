@@ -9,6 +9,11 @@ import HeadingDropdown from './HeadingDropdown';
 import { ToolbarPluginPropsType } from './ToolbarPluginPropsType';
 import Underline from './Underline';
 import Undo from './Undo';
+import Redo from './Redo';
+import AlignLeft from './AlignLeft';
+import AlignRight from './AlignRight';
+import AlignCenter from './AlignCenter';
+import AlignJustify from './AlignJustify';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
@@ -48,63 +53,18 @@ const Toolbar = ({ editor }: ToolbarPluginPropsType) => {
 
     return (
         <div className="writeup-toolbar">
-            <Undo editor={editor}/>
-            <button
-                onClick={() => editor.chain().focus().redo().run()}
-                disabled={
-                    !editor.can()
-                        .chain()
-                        .focus()
-                        .redo()
-                        .run()
-                }
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
-                    <path d="M447.5 224H456c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L397.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L311 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H447.5z" />
-                </svg>
-            </button>
+            <Undo editor={editor} />
+            <Redo editor={editor} />
             <HeadingDropdown editor={editor} />
             <Bold editor={editor} />
             <Italic editor={editor} />
             <Underline editor={editor} />
             <Strikethrough editor={editor} />
             <AlignmentDropdown editor={editor} />
-            <button
-                onClick={() => editor.chain().focus().setTextAlign('left').run()}
-                className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path d="M288 64c0 17.7-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32H256c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H256c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-                </svg>
-            </button>
-            <button
-                onClick={() => editor.chain().focus().setTextAlign('center').run()}
-                className={editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
-                    <path d="M352 64c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32zm96 128c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32zM0 448c0 17.7 14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32zM352 320c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32z" />
-                </svg>
-            </button>
-            <button
-                onClick={() => editor.chain().focus().setTextAlign('right').run()}
-                className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
-                    <path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-                </svg>
-            </button>
-            <button
-                onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-                className={editor.isActive({ textAlign: 'justify' }) ? 'is-active' : ''}
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
-                    <path d="M448 64c0-17.7-14.3-32-32-32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32zm0 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32zM0 192c0 17.7 14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32zM448 448c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32z" />
-                </svg>
-            </button>
+            <AlignLeft editor={editor} />
+            <AlignCenter editor={editor} />
+            <AlignRight editor={editor} />
+            <AlignJustify editor={editor} />
             <div className="color-picker">
                 <input
                     type="color"

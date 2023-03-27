@@ -5,7 +5,7 @@
 
     --writeup-toolbar-button-background-color-hover: var(--theme-black-400);
     --writeup-toolbar-button-background-color-active: var(--theme-black-500);
-    --writeup-toolbar-button-background-color-active: var(--theme-black-500);
+    --writeup-toolbar-button-color-disabled: var(--theme-black-50);
 
     --writeup-toolbar-button-color-hover: var(--theme-black-400i);
     --writeup-toolbar-button-color-active: var(--theme-black-500i);

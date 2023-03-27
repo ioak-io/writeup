@@ -24,6 +24,14 @@
     transition: 250ms background-color ease-in-out, 250ms color ease-in-out;
 }
 
+.writeup-toolbar button:disabled {
+    color: var(--writeup-toolbar-button-color-disabled);
+}
+
+.writeup-toolbar button:disabled svg {
+    fill: var(--writeup-toolbar-button-color-disabled);
+}
+
 .writeup-toolbar button svg {
     fill: var(--writeup-color);
     /* padding: 3px; */
