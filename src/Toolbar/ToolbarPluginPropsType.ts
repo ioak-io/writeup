@@ -1,3 +1,3 @@
 export type ToolbarPluginPropsType = {
-    editor: any;
+    editor?: any;
 }

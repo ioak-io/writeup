@@ -27,13 +27,35 @@ import AddTable from './AddTable';
 import AddImage from './AddImage';
 import HorizontalRule from './HorizontalRule';
 import AddYoutubeVideo from './AddYoutubeVideo';
+import { ToolbarPropsType } from './ToolbarPropsType';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
-const Toolbar = ({ editor }: ToolbarPluginPropsType) => {
+const Toolbar = ({ editor, children }: ToolbarPropsType) => {
+    const [childWidgets, setChildWidgets] = useState<React.ReactNode[]>([]);
     if (!editor) {
         return null
     }
+
+
+    // useEffect(() => {
+    //     const _childWidgets: any[] = [];
+    //     React.Children.forEach(children, (child: any) => {
+    //         let _child = child;
+    //         // if ([
+    //         //   "ArticleViewTitleChildWidget",
+    //         //   "ArticleViewSummaryChildWidget",
+    //         //   "ArticleViewBodyChildWidget",
+    //         //   "ArticleViewMetadataChildWidget",
+    //         //   "ArticleViewTagsChildWidget"
+    //         // ].includes(child.type.displayName)) {
+    //         _child = React.cloneElement(child, { editor });
+    //         // }
+    //         _childWidgets.push(_child);
+    //     })
+
+    //     setChildWidgets(_childWidgets);
+    // }, [children]);
 
     // useEffect(() => {
     //     if (widthRef.current && heightRef.current) {
@@ -44,31 +66,7 @@ const Toolbar = ({ editor }: ToolbarPluginPropsType) => {
 
     return (
         <div className="writeup-toolbar">
-            <Undo editor={editor} />
-            <Redo editor={editor} />
-            <HeadingDropdown editor={editor} />
-            <Bold editor={editor} />
-            <Italic editor={editor} />
-            <Underline editor={editor} />
-            <Strikethrough editor={editor} />
-            <AlignmentDropdown editor={editor} />
-            <AlignLeft editor={editor} />
-            <AlignCenter editor={editor} />
-            <AlignRight editor={editor} />
-            <AlignJustify editor={editor} />
-            <FontColor editor={editor} />
-            <HighlightColor editor={editor} />
-            <BulletList editor={editor} />
-            <OrderedList editor={editor} />
-            <TaskList editor={editor} />
-            <BlockQuote editor={editor} />
-            <Code editor={editor} />
-            <CodeBlock editor={editor} />
-            <ClearFormatting editor={editor} />
-            <HorizontalRule editor={editor} />
-            <AddImage editor={editor} />
-            <AddTable editor={editor} />
-            <AddYoutubeVideo editor={editor} />
+            {children}
             {/* <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button> */}
             {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}>
                 hard break

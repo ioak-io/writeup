@@ -1,5 +1,3 @@
-import React, { useEffect, useReducer, useState } from 'react';
-import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Color from '@tiptap/extension-color';
 import TextStyle from '@tiptap/extension-text-style';
@@ -18,25 +16,18 @@ import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
+import { useEditor } from '@tiptap/react';
 
-import './style.css';
-import Toolbar from '../Toolbar';
-
-export type EditorProps = {
-
-}
-
-const Editor = (props: EditorProps) => {
-    const editor = useEditor({
+export const getEditorConfig = () => {
+    const config = useEditor({
         extensions: [
-            Highlight,
             Typography,
-            Document, Paragraph, Text, TextStyle, Color,
+            TextStyle, Color,
             Underline.configure({
                 HTMLAttributes: {
-                  class: 'my-custom-class',
+                    class: 'my-custom-class',
                 },
-              }),
+            }),
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
             }),
@@ -86,14 +77,7 @@ const Editor = (props: EditorProps) => {
             }),
         ],
         content: `Hello`,
-    })
+    });
 
-    return (
-        <div id="editor">
-            <Toolbar editor={editor} />
-            <EditorContent editor={editor} />
-        </div>
-    )
+    return config;
 }
-
-export default Editor;

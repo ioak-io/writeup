@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import { Story } from "@storybook/react";
 import { useAddonState } from '@storybook/api';
-import Editor, { EditorProps } from ".";
+import EditorDemo, { EditorDemoProps } from ".";
 
 export default {
-  title: "Editor",
-  component: Editor,
+  title: "EditorDemo",
+  component: EditorDemo,
   argTypes: {
   },
 } as Meta;
 
 // Create a master template for mapping args to render the Button component
-const Template: Story<EditorProps> = (args: EditorProps) => <Editor {...args} />;
+const Template: Story<EditorDemoProps> = (args: EditorDemoProps) => <EditorDemo {...args} />;
 
 // Reuse that template for creating different stories
-export const BasicEditor = Template.bind({});
-BasicEditor.args = {
+export const BasicEditorDemo = Template.bind({});
+BasicEditorDemo.args = {
   label: "First name",
   value: "",
   placeholder: 'Lorem ipsum dolor sit',
