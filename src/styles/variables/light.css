@@ -1,0 +1,11 @@
+.writeup-light {
+    --writeup-background-color: var(--theme-white-200);
+    --writeup-color: var(--theme-white-200i);
+    --writeup-border-color: var(--theme-white-500);
+
+    --writeup-toolbar-button-background-color-hover: var(--theme-white-400);
+    --writeup-toolbar-button-background-color-active: var(--theme-white-600);
+
+    --writeup-toolbar-button-color-hover: var(--theme-white-400i);
+    --writeup-toolbar-button-color-active: var(--theme-white-600i);
+}

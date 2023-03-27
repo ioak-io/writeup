@@ -1,19 +1,5 @@
-@import './theme-adaptive.css';
 @import './theme-black.css';
 @import './theme-white.css';
-@import './theme-black-extended.css';
-@import './theme-white-extended.css';
-@import './theme-default.css';
-@import './theme-default-light-transparent.css';
-@import './theme-default-dark-transparent.css';
-@import './theme-success.css';
-@import './theme-warning.css';
-@import './theme-danger.css';
-@import './theme-danger-light-transparent.css';
-@import './theme-danger-dark-transparent.css';
-@import './theme-primary.css';
-@import './theme-primary-light-transparent.css';
-@import './theme-primary-dark-transparent.css';
 
 .writeup-light {
     color: var(--theme-black-900);
