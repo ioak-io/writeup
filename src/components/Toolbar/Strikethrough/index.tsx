@@ -1,8 +1,9 @@
 import './style.css'
 
 import React, { useState, useEffect } from 'react'
+import { ToolbarPluginPropsType } from '../ToolbarPluginPropsType';
 
-const Strikethrough = ({ editor }: any) => {
+const Strikethrough = ({ editor }: ToolbarPluginPropsType) => {
 
     return (
         <button

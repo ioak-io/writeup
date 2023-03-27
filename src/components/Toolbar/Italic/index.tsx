@@ -1,8 +1,9 @@
 import './style.css'
 
 import React, { useState, useEffect } from 'react'
+import { ToolbarPluginPropsType } from '../ToolbarPluginPropsType';
 
-const Italic = ({ editor }: any) => {
+const Italic = ({ editor }: ToolbarPluginPropsType) => {
 
     return (
         <button

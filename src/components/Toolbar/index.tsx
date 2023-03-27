@@ -5,59 +5,18 @@ import AlignmentDropdown from './AlignmentDropdown';
 import Bold from './Bold';
 import Italic from './Italic';
 import Strikethrough from './Strikethrough';
+import HeadingDropdown from './HeadingDropdown';
+import { ToolbarPluginPropsType } from './ToolbarPluginPropsType';
+import Underline from './Underline';
+import Undo from './Undo';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
-const Toolbar = ({ editor }: any) => {
-    const [headingState, setHeadingState] = useState("Paragraph");
-    const [alignmentState, setAlignmentState] = useState("Left");
+const Toolbar = ({ editor }: ToolbarPluginPropsType) => {
     const widthRef = React.useRef<any>(null)
     const heightRef = React.useRef<any>(null)
     if (!editor) {
         return null
-    }
-
-    const handleHeadingStateChange = (event: any) => {
-        switch (event.currentTarget.value) {
-            case "Heading 1":
-                editor.chain().focus().toggleHeading({ level: 1 }).run()
-                break;
-            case "Heading 2":
-                editor.chain().focus().toggleHeading({ level: 2 }).run();
-                break;
-            case "Heading 3":
-                editor.chain().focus().toggleHeading({ level: 3 }).run();
-                break;
-            case "Heading 4":
-                editor.chain().focus().toggleHeading({ level: 4 }).run();
-                break;
-            case "Heading 5":
-                editor.chain().focus().toggleHeading({ level: 5 }).run();
-                break;
-            case "Heading 6":
-                editor.chain().focus().toggleHeading({ level: 6 }).run();
-                break;
-            default:
-                editor.chain().focus().setParagraph().run();
-        }
-        setHeadingState(event.currentTarget.value || "Paragraph");
-    }
-
-    const handleAlignmentStateChange = (event: any) => {
-        switch (event.currentTarget.value) {
-            case "Right":
-                editor.chain().focus().setTextAlign('right').run()
-                break;
-            case "Center":
-                editor.chain().focus().setTextAlign('center').run()
-                break;
-            case "Justify":
-                editor.chain().focus().setTextAlign('justify').run()
-                break;
-            default:
-                editor.chain().focus().setTextAlign('left').run()
-        }
-        setAlignmentState(event.currentTarget.value || "Left");
     }
 
     // useEffect(() => {
@@ -88,21 +47,8 @@ const Toolbar = ({ editor }: any) => {
     }
 
     return (
-        <div className="writeup-toolbar"><button
-            onClick={() => editor.chain().focus().undo().run()}
-            disabled={
-                !editor.can()
-                    .chain()
-                    .focus()
-                    .undo()
-                    .run()
-            }
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
-                <path d="M32.5 224H24c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L82.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L169 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H32.5z" />
-            </svg>
-        </button>
+        <div className="writeup-toolbar">
+            <Undo editor={editor}/>
             <button
                 onClick={() => editor.chain().focus().redo().run()}
                 disabled={
@@ -118,40 +64,12 @@ const Toolbar = ({ editor }: any) => {
                     <path d="M447.5 224H456c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L397.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L311 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H447.5z" />
                 </svg>
             </button>
-            <select className={`heading-select ${!editor.isActive('paragraph') ? 'is-active' : ''}`}
-                value={
-                    editor.isActive('heading', { level: 1 }) ? 'Heading 1' :
-                        editor.isActive('heading', { level: 2 }) ? 'Heading 2' :
-                            editor.isActive('heading', { level: 3 }) ? 'Heading 3' :
-                                editor.isActive('heading', { level: 4 }) ? 'Heading 4' :
-                                    editor.isActive('heading', { level: 5 }) ? 'Heading 5' :
-                                        editor.isActive('heading', { level: 6 }) ? 'Heading 6' : "Paragraph"
-                }
-                onChange={handleHeadingStateChange}>
-                <option>Paragraph</option>
-                <option>Heading 1</option>
-                <option>Heading 2</option>
-                <option>Heading 3</option>
-                <option>Heading 4</option>
-                <option>Heading 5</option>
-                <option>Heading 6</option>
-            </select>
+            <HeadingDropdown editor={editor} />
             <Bold editor={editor} />
             <Italic editor={editor} />
+            <Underline editor={editor} />
             <Strikethrough editor={editor} />
             <AlignmentDropdown editor={editor} />
-            <select className={`heading-select ${!editor.isActive({ 'textAlign': 'left' }) ? 'is-active' : ''}`}
-                value={
-                    editor.isActive({ 'textAlign': 'center' }) ? 'Center' :
-                        editor.isActive({ 'textAlign': 'right' }) ? 'Right' :
-                            editor.isActive({ 'textAlign': 'justify' }) ? 'Justify' : 'Left'
-                }
-                onChange={handleAlignmentStateChange}>
-                <option>Left</option>
-                <option>Right</option>
-                <option>Center</option>
-                <option>Justify</option>
-            </select>
             <button
                 onClick={() => editor.chain().focus().setTextAlign('left').run()}
                 className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}

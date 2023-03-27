@@ -1,8 +1,9 @@
 import './style.css'
 
 import React, { useState, useEffect } from 'react'
+import { ToolbarPluginPropsType } from '../ToolbarPluginPropsType';
 
-const Bold = ({ editor }: any) => {
+const Bold = ({ editor }: ToolbarPluginPropsType) => {
 
     return (
         <button

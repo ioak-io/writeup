@@ -1,9 +1,9 @@
 import './style.css'
 
 import React, { useState, useEffect } from 'react'
+import { ToolbarPluginPropsType } from '../ToolbarPluginPropsType';
 
-const AlignmentDropdown = ({ editor }: any) => {
-    const [alignmentState, setAlignmentState] = useState("Left");
+const AlignmentDropdown = ({ editor }: ToolbarPluginPropsType) => {
 
     const handleAlignmentStateChange = (event: any) => {
         switch (event.currentTarget.value) {
@@ -19,7 +19,6 @@ const AlignmentDropdown = ({ editor }: any) => {
             default:
                 editor.chain().focus().setTextAlign('left').run()
         }
-        setAlignmentState(event.currentTarget.value || "Left");
     }
 
     return (

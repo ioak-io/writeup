@@ -7,6 +7,7 @@ import Text from '@tiptap/extension-text';
 import TextAlign from '@tiptap/extension-text-align';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
+import Underline from '@tiptap/extension-underline'
 import Image from '@tiptap/extension-image';
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
@@ -31,6 +32,11 @@ const Editor = (props: EditorProps) => {
             Highlight,
             Typography,
             Document, Paragraph, Text, TextStyle, Color,
+            Underline.configure({
+                HTMLAttributes: {
+                  class: 'my-custom-class',
+                },
+              }),
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
             }),
