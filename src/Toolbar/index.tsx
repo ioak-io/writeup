@@ -32,7 +32,7 @@ import { ToolbarPropsType } from './ToolbarPropsType';
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
 const Toolbar = ({ editor, children }: ToolbarPropsType) => {
-    const [childWidgets, setChildWidgets] = useState<React.ReactNode[]>([]);
+    const [contextBar, setContextBar] = useState<any>();
     if (!editor) {
         return null
     }
@@ -64,13 +64,25 @@ const Toolbar = ({ editor, children }: ToolbarPropsType) => {
     //     }
     // }, [widthRef.current, heightRef.current])
 
+    const onContextBarChange = (detail: any) => {
+        console.log(detail);
+        setContextBar(detail);
+    }
+
     return (
-        <div className="writeup-toolbar">
-            {children}
+        <div className="writeup-toolbar-group">
             {/* <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button> */}
             {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}>
                 hard break
             </button> */}
+            <div className="writeup-toolbar">
+                {React.Children.map(children, (child: any) => {
+                    return React.cloneElement(child, {onContextBarChange})
+                })}
+            </div>
+            <div className="writeup-toolbar">
+                {contextBar}
+            </div>
         </div>
     )
 }

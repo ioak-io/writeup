@@ -1,0 +1,16 @@
+.writeup-add-table {
+    position: relative;
+}
+
+.writeup-prompt {
+    position: fixed;
+    padding: 20px 20px;
+    border-radius: 6px;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    /* width: 80%; */
+    z-index: 1;
+    background-color: var(--writeup-background-color);
+    border: 1px solid var(--writeup-border-color);
+}
