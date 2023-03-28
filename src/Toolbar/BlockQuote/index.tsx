@@ -8,6 +8,7 @@ const BlockQuote = ({ editor }: ToolbarPluginPropsType) => {
         <button
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
             className={editor.isActive('blockquote') ? 'is-active' : ''}
+            type="button"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}

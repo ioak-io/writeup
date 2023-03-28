@@ -16,6 +16,7 @@ const Code = ({ editor }: ToolbarPluginPropsType) => {
                     .run()
             }
             className={editor.isActive('code') ? 'is-active' : ''}
+            type="button"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                 {/* <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}

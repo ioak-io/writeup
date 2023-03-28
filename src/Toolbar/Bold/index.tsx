@@ -16,6 +16,7 @@ const Bold = ({ editor }: ToolbarPluginPropsType) => {
                         .run()
                 }
                 className={editor.isActive('bold') ? 'is-active' : ''}
+                type="button"
             >
                 {/* <img src={AlignLeft} /> */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">

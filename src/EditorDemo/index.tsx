@@ -30,6 +30,7 @@ import UnderlineComponent from '../Toolbar/Underline';
 import TaskListComponent from '../Toolbar/TaskList';
 import { getEditorConfig } from '../utils/EditorUtils';
 import Divider from '../Toolbar/Divider';
+import Link from '../Toolbar/Link';
 
 export type EditorDemoProps = {
 
@@ -41,6 +42,7 @@ const EditorDemo = (props: EditorDemoProps) => {
     return (
         <>
             <div id="editor">
+                <EditorContent editor={editor} />
                 <Toolbar editor={editor}>
                     <Undo editor={editor} />
                     <Redo editor={editor} />
@@ -58,6 +60,7 @@ const EditorDemo = (props: EditorDemoProps) => {
                     <Divider />
                     <BulletList editor={editor} />
                     <OrderedList editor={editor} />
+                    <Link editor={editor} />
                     <TaskListComponent editor={editor} />
                     <BlockQuote editor={editor} />
                     <Code editor={editor} />
@@ -72,7 +75,6 @@ const EditorDemo = (props: EditorDemoProps) => {
                     <AddTable editor={editor} />
                     <AddYoutubeVideo editor={editor} />
                 </Toolbar>
-                <EditorContent editor={editor} />
             </div>
         </>
     )

@@ -16,6 +16,7 @@ import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
+import Link from '@tiptap/extension-link'
 import { useEditor } from '@tiptap/react';
 
 export const getEditorConfig = () => {
@@ -51,6 +52,12 @@ export const getEditorConfig = () => {
             TableRow,
             TableHeader,
             TableCell,
+            Link.configure({
+                HTMLAttributes: {
+                    class: 'my-custom-class',
+                },
+                validate: href => /^https?:\/\//.test(href),
+            }),
             Highlight.configure({
                 HTMLAttributes: {
                     class: 'my-custom-class',
