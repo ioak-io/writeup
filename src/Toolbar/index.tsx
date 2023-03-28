@@ -1,32 +1,6 @@
 import './style.css'
 
 import React, { useState, useEffect } from 'react'
-import AlignmentDropdown from './AlignmentDropdown';
-import Bold from './Bold';
-import Italic from './Italic';
-import Strikethrough from './Strikethrough';
-import HeadingDropdown from './HeadingDropdown';
-import { ToolbarPluginPropsType } from './ToolbarPluginPropsType';
-import Underline from './Underline';
-import Undo from './Undo';
-import Redo from './Redo';
-import AlignLeft from './AlignLeft';
-import AlignRight from './AlignRight';
-import AlignCenter from './AlignCenter';
-import AlignJustify from './AlignJustify';
-import Code from './Code';
-import BlockQuote from './BlockQuote';
-import TaskList from './TaskList';
-import OrderedList from './OrderedList';
-import BulletList from './BulletList';
-import CodeBlock from './CodeBlock';
-import FontColor from './FontColor';
-import HighlightColor from './HighlightColor';
-import ClearFormatting from './ClearFormatting';
-import AddTable from './AddTable';
-import AddImage from './AddImage';
-import HorizontalRule from './HorizontalRule';
-import AddYoutubeVideo from './AddYoutubeVideo';
 import { ToolbarPropsType } from './ToolbarPropsType';
 import ContextBar from './ContextBar';
 
@@ -34,6 +8,7 @@ import ContextBar from './ContextBar';
 
 const Toolbar = ({ editor, children }: ToolbarPropsType) => {
     const [contextBar, setContextBar] = useState<any>();
+    const [addTableWizard, setAddTableWizard] = useState<boolean>(false);
     if (!editor) {
         return null
     }
@@ -70,6 +45,10 @@ const Toolbar = ({ editor, children }: ToolbarPropsType) => {
         setContextBar(detail);
     }
 
+    const toggleAddTableWizard = () => {
+        setAddTableWizard(!addTableWizard);
+    }
+
     return (
         <div className="writeup-toolbar">
             {/* <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button> */}
@@ -78,7 +57,7 @@ const Toolbar = ({ editor, children }: ToolbarPropsType) => {
             </button> */}
             <div className="writeup-toolbar-main">
                 {React.Children.map(children, (child: any) => {
-                    return React.cloneElement(child, { onContextBarChange })
+                    return React.cloneElement(child, { onContextBarChange, toggleAddTableWizard })
                 })}
             </div>
             <ContextBar content={contextBar} editor={editor} />

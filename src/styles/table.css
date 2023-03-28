@@ -25,13 +25,13 @@ table td {
 table,
 table th,
 table td {
-    border: 1px solid var(--theme-white-600);
+    border: 1px solid var(--theme-white-900);
 }
 
 .writeup-dark table,
 .writeup-dark table th,
 .writeup-dark table td {
-    border: 1px solid var(--theme-black-50);
+    border: 1px solid #707070;
 }
 
 table th {

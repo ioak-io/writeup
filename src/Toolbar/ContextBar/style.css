@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     /* overflow-x: auto; */
     background-color: var(--writeup-background-color);
-    border-radius: 4px 4px 0 0;
+    border-radius: 0 0 0 0;
     border-bottom: 1px solid var(--writeup-border-color);
     grid-gap: 4px;
 }

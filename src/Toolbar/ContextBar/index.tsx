@@ -2,6 +2,7 @@ import './style.css'
 
 import React, { useState, useEffect } from 'react'
 import TableContextActions from '../TableContextActions';
+import GridSize from '../AddTable/GridSize';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
