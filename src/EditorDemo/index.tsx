@@ -67,7 +67,8 @@ const EditorDemo = (props: EditorDemoProps) => {
                     <ClearFormatting editor={editor} />
                     <HorizontalRule editor={editor} />
                     <Divider />
-                    <AddImage editor={editor} />
+                    <AddImage editor={editor} imageUploadMethod="POST" imageUploadParam='file'
+                        imageUploadURL='http://localhost:4000/api/upload/writeup' />
                     <AddTable editor={editor} />
                     <AddYoutubeVideo editor={editor} />
                 </Toolbar>
