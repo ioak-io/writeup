@@ -1,4 +1,9 @@
 .writeup-toolbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.writeup-toolbar-main {
     padding: 10px 10px;
     display: flex;
     flex-direction: row;
@@ -10,7 +15,7 @@
     grid-gap: 4px;
 }
 
-.writeup-toolbar button {
+.writeup-toolbar-main button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,28 +29,28 @@
     transition: 250ms background-color ease-in-out, 250ms color ease-in-out;
 }
 
-.writeup-toolbar button:disabled {
+.writeup-toolbar-main button:disabled {
     color: var(--writeup-toolbar-button-color-disabled);
 }
 
-.writeup-toolbar button:disabled svg {
+.writeup-toolbar-main button:disabled svg {
     fill: var(--writeup-toolbar-button-color-disabled);
 }
 
-.writeup-toolbar button svg {
+.writeup-toolbar-main button svg {
     fill: var(--writeup-color);
     /* padding: 3px; */
     height: 12px;
 }
 
 
-.writeup-toolbar button.is-active {
+.writeup-toolbar-main button.is-active {
     background-color: var(--writeup-toolbar-button-background-color-active);
     color: var(--writeup-toolbar-button-color-active);
 }
 
-.writeup-toolbar button:hover,
-.writeup-toolbar button:focus {
+.writeup-toolbar-main button:hover,
+.writeup-toolbar-main button:focus {
     background-color: var(--writeup-toolbar-button-background-color-hover);
     color: var(--writeup-toolbar-button-color-hover);
 }

@@ -5,18 +5,13 @@ import { ToolbarPluginPropsType } from '../ToolbarPluginPropsType';
 import GridSize from './GridSize';
 
 const AddTable = ({ editor, onContextBarChange }: ToolbarPluginPropsType) => {
-    const [isPromptOpen, setIsPromptOpen] = useState(false);
-
-    const addTable = () => {
-        editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()
-    }
 
     const contextActions = {
         onCancel: () => {
             onContextBarChange(null);
         },
         onApply: ({ rows, columns }: any) => {
-            editor.chain().focus().insertTable({ rows: rows, cols: columns, withHeaderRow: true }).run()
+            editor.chain().focus().insertTable({ rows: rows + 1, cols: columns, withHeaderRow: true }).run()
             onContextBarChange(null);
         }
     }
@@ -34,9 +29,6 @@ const AddTable = ({ editor, onContextBarChange }: ToolbarPluginPropsType) => {
                     <path d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" />
                 </svg>
             </button>
-            {isPromptOpen && <div className="writeup-prompt">
-                Row
-            </div>}
         </div>
     )
 }

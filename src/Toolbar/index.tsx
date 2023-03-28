@@ -28,6 +28,7 @@ import AddImage from './AddImage';
 import HorizontalRule from './HorizontalRule';
 import AddYoutubeVideo from './AddYoutubeVideo';
 import { ToolbarPropsType } from './ToolbarPropsType';
+import ContextBar from './ContextBar';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
@@ -70,19 +71,17 @@ const Toolbar = ({ editor, children }: ToolbarPropsType) => {
     }
 
     return (
-        <div className="writeup-toolbar-group">
+        <div className="writeup-toolbar">
             {/* <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button> */}
             {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}>
                 hard break
             </button> */}
-            <div className="writeup-toolbar">
+            <div className="writeup-toolbar-main">
                 {React.Children.map(children, (child: any) => {
-                    return React.cloneElement(child, {onContextBarChange})
+                    return React.cloneElement(child, { onContextBarChange })
                 })}
             </div>
-            <div className="writeup-toolbar">
-                {contextBar}
-            </div>
+            <ContextBar content={contextBar} editor={editor} />
         </div>
     )
 }
