@@ -11,8 +11,18 @@ const AddTable = ({ editor, onContextBarChange }: ToolbarPluginPropsType) => {
         editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()
     }
 
+    const contextActions = {
+        onCancel: () => {
+            onContextBarChange(null);
+        },
+        onApply: ({ rows, columns }: any) => {
+            editor.chain().focus().insertTable({ rows: rows, cols: columns, withHeaderRow: true }).run()
+            onContextBarChange(null);
+        }
+    }
+
     const showContextBar = () => {
-        const contextBarContent = <GridSize />
+        const contextBarContent = <GridSize onApply={contextActions.onApply} onCancel={contextActions.onCancel} />
         onContextBarChange(contextBarContent);
     }
 
