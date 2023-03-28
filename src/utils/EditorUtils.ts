@@ -39,8 +39,8 @@ export const getEditorConfig = () => {
                 allowBase64: true,
             }),
             Youtube.configure({
-                inline: false,
-                controls: false,
+                inline: true,
+                controls: true,
             }),
             Table.configure({
                 HTMLAttributes: {

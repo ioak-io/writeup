@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { ToolbarPluginPropsType } from '../ToolbarPluginPropsType';
 
 const AddYoutubeVideo = ({ editor }: ToolbarPluginPropsType) => {
-    const widthRef = React.useRef<any>(null)
-    const heightRef = React.useRef<any>(null)
+    const widthRef = React.useRef<any>(640)
+    const heightRef = React.useRef<any>(480)
     
     const addYoutubeVideo = () => {
         const url = prompt('Enter YouTube URL')
@@ -13,8 +13,8 @@ const AddYoutubeVideo = ({ editor }: ToolbarPluginPropsType) => {
         if (url) {
             editor.commands.setYoutubeVideo({
                 src: url,
-                width: Math.max(320, parseInt(widthRef.current.value, 10)) || 640,
-                height: Math.max(180, parseInt(heightRef.current.value, 10)) || 480,
+                // width: Math.max(320, parseInt(widthRef.current.value, 10)) || 640,
+                // height: Math.max(180, parseInt(heightRef.current.value, 10)) || 480,
             })
         }
     }

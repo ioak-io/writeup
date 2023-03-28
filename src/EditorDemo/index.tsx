@@ -29,6 +29,7 @@ import AddYoutubeVideo from '../Toolbar/AddYoutubeVideo';
 import UnderlineComponent from '../Toolbar/Underline';
 import TaskListComponent from '../Toolbar/TaskList';
 import { getEditorConfig } from '../utils/EditorUtils';
+import Divider from '../Toolbar/Divider';
 
 export type EditorDemoProps = {
 
@@ -43,26 +44,29 @@ const EditorDemo = (props: EditorDemoProps) => {
                 <Toolbar editor={editor}>
                     <Undo editor={editor} />
                     <Redo editor={editor} />
-                    <HeadingDropdown editor={editor} />
+                    <Divider />
                     <Bold editor={editor} />
                     <Italic editor={editor} />
                     <UnderlineComponent editor={editor} />
                     <Strikethrough editor={editor} />
+                    <HeadingDropdown editor={editor} />
                     <AlignmentDropdown editor={editor} />
                     <AlignLeft editor={editor} />
                     <AlignCenter editor={editor} />
                     <AlignRight editor={editor} />
                     <AlignJustify editor={editor} />
-                    <FontColor editor={editor} />
-                    <HighlightColor editor={editor} />
+                    <Divider />
                     <BulletList editor={editor} />
                     <OrderedList editor={editor} />
                     <TaskListComponent editor={editor} />
                     <BlockQuote editor={editor} />
                     <Code editor={editor} />
                     <CodeBlock editor={editor} />
+                    <FontColor editor={editor} />
+                    <HighlightColor editor={editor} />
                     <ClearFormatting editor={editor} />
                     <HorizontalRule editor={editor} />
+                    <Divider />
                     <AddImage editor={editor} />
                     <AddTable editor={editor} />
                     <AddYoutubeVideo editor={editor} />
