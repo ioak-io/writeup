@@ -1,7 +1,7 @@
+import './contextbar.css';
 import './style.css'
 
 import React, { useState, useEffect } from 'react'
-import { ToolbarPropsType } from './ToolbarPropsType';
 import ContextBar from './ContextBar';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
@@ -14,6 +14,7 @@ export type ToolbarProps = {
 }
 
 const Toolbar = ({ editor, placement, children, ...props }: ToolbarProps) => {
+    const [contextBar, setContextBar] = useState<any>();
     if (!editor) {
         return null
     }
@@ -46,20 +47,22 @@ const Toolbar = ({ editor, placement, children, ...props }: ToolbarProps) => {
     // }, [widthRef.current, heightRef.current])
 
     const onContextBarChange = (detail: any) => {
-        props.onContextBarChange(detail);
+        setContextBar(detail);
     }
 
     return (
         <div className={`writeup-toolbar writeup-toolbar--placement-${placement}`}>
-            {/* <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button> */}
-            {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}>
-                hard break
-            </button> */}
+            {placement === 'bottom' && <div className={`writeup-contextbar`}>
+                <ContextBar content={contextBar} editor={editor} />
+            </div>}
             <div className="writeup-toolbar-main">
                 {React.Children.map(children, (child: any) => {
                     return React.cloneElement(child, { onContextBarChange })
                 })}
             </div>
+            {placement !== 'bottom' && <div className={`writeup-contextbar`}>
+                <ContextBar content={contextBar} editor={editor} />
+            </div>}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import Toolbar from "./Toolbar";
+import Editor from "./Editor";
 import Bold from "./Toolbar/Bold";
 import Italic from "./Toolbar/Italic";
 import Underline from "./Toolbar/Underline";
@@ -22,10 +22,8 @@ import HorizontalRule from './Toolbar/HorizontalRule';
 import FontColor from './Toolbar/FontColor';
 import HighlightColor from './Toolbar/HighlightColor';
 
-import * as EditorUtils from './utils/EditorUtils';
-
 export {
-    Toolbar,
+    Editor,
     Bold,
     Italic,
     Underline,
@@ -47,6 +45,5 @@ export {
     FontColor,
     HighlightColor,
     HorizontalRule,
-    OrderedList,
-    EditorUtils
+    OrderedList
 }

@@ -10,7 +10,8 @@ const FontFamilyDropdown = ({ editor }: ToolbarPluginPropsType) => {
             case "Comic Sans":
                 editor.chain().focus().setFontFamily('Comic Sans MS, Comic Sans').run()
                 break;
-            case "Reset":
+            case "Font family":
+            case "-Clear-":
                 editor.chain().focus().unsetFontFamily().run()
                 break;
             default:
@@ -19,21 +20,28 @@ const FontFamilyDropdown = ({ editor }: ToolbarPluginPropsType) => {
     }
 
     return (
-        <select className={`heading-select ${!editor.isActive({ 'textStyle': { fontFamily: 'Comic Sans MS, Comic Sans' } }) ? 'is-active' : ''}`}
+        <select className={`heading-select ${(
+                editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ||
+                editor.isActive('textStyle', { fontFamily: 'Inter' }) ||
+                editor.isActive('textStyle', { fontFamily: 'Monospace' }) ||
+                editor.isActive('textStyle', { fontFamily: 'Serif' }) ||
+                editor.isActive('textStyle', { fontFamily: 'Georgia' })
+            ) ? 'is-active' : ''}`}
             value={
                 editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ? 'Comic Sans' :
                     editor.isActive('textStyle', { fontFamily: 'Inter' }) ? 'Inter' :
                         editor.isActive('textStyle', { fontFamily: 'Monospace' }) ? 'Monospace' :
                             editor.isActive('textStyle', { fontFamily: 'Serif' }) ? 'Serif' :
-                                editor.isActive('textStyle', { fontFamily: 'Georgia' }) ? 'Georgia' : 'Reset'
+                                editor.isActive('textStyle', { fontFamily: 'Georgia' }) ? 'Georgia' : 'Font family'
             }
             onChange={handleChange}>
+            <option>Font family</option>
             <option>Inter</option>
             <option>Comic Sans</option>
             <option>Monospace</option>
             <option>Serif</option>
             <option>Georgia</option>
-            <option>Reset</option>
+            <option>-Clear-</option>
         </select>
     )
 }

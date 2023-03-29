@@ -21,14 +21,13 @@ const Editor = (props: EditorProps) => {
     }
 
     return (
-        <div className={`writeup-editor writeup-editor--toolbar-placement-${props.toolbarPlacement || 'top'}`}>
-            {props.toolbarPlacement === "top" && <Toolbar editor={props.editor} placement={props.toolbarPlacement} onContextBarChange={onContextBarChange}>
+        <div className={`writeup-editor ${(props.editor?.isActive('table') || contextBar) ? 'writeup-editor--contextbar-active' : ''} writeup-editor--toolbar-placement-${props.toolbarPlacement || 'top'}`}>
+            {props.toolbarPlacement !== "bottom" && <Toolbar editor={props.editor} placement={props.toolbarPlacement} onContextBarChange={onContextBarChange}>
                 {props.children}
             </Toolbar>}
             <div className='writeup-editor-content'>
                 <EditorContent editor={props.editor} />
             </div>
-            <ContextBar content={contextBar} editor={props.editor} />
             {props.toolbarPlacement === "bottom" && <Toolbar editor={props.editor} placement={props.toolbarPlacement} onContextBarChange={onContextBarChange}>
                 {props.children}
             </Toolbar>}

@@ -1,12 +1,4 @@
-.writeup-table-context-actions {
-    grid-gap: 10px;
-    border-radius: 0;
-}
 .writeup-table-context-actions button {
-    display: grid;
-    grid-auto-flow: column;
-    column-gap: 4px;
-    background-color: var(--writeup-border-color);
 }
 
 .writeup-table-context-actions button svg {

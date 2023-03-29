@@ -1,0 +1,45 @@
+.writeup-contextbar .writeup-contextbar-content {
+    padding: 10px 10px;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    /* overflow-x: auto; */
+    background-color: var(--writeup-contextbar-background-color);
+    border-radius: 0 0 0 0;
+    /* border-top: 1px solid var(--writeup-border-color);
+    border-bottom: none; */
+    grid-gap: 4px;
+}
+
+.writeup-contextbar .writeup-contextbar-content button {
+    background-color: var(--writeup-contextbar-background-color);
+}
+
+.writeup-contextbar .writeup-contextbar-content button:hover,
+.writeup-contextbar .writeup-contextbar-content button:focus {
+    background-color: var(--writeup-contextbar-button-background-color-hover);
+}
+
+/* .writeup-editor--toolbar-placement-top .writeup-contextbar .writeup-contextbar-content {
+    border-radius: 0 0 var(--writeup-border-radius) var(--writeup-border-radius);
+} */
+
+.writeup-contextbar .writeup-contextbar-content button svg {
+    fill: var(--writeup-color);
+    height: 12px;
+}
+
+
+.writeup-contextbar .writeup-contextbar-content input {
+    font-size: 12px;
+    width: 64px;
+    height: 30px;
+    padding: 0 10px;
+    background-color: var(--writeup-contextbar-background-color);
+    color: var(--writeup-color);
+    border: 1px solid var(--writeup-border-color-strong);
+    border-radius: var(--writeup-button-border-radius);
+    outline: none;
+}

@@ -15,9 +15,7 @@ const ContextBar = (props: ContextBarProps) => {
 
     return (
         <>
-            {props.content && <div className="writeup-contextbar">
-                {props.content}
-            </div>}
+            {props.content && props.content}
             {props.editor?.isActive('table') && <TableContextActions editor={props.editor} />}
         </>
     )

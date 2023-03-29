@@ -5,7 +5,7 @@ import { useAddonState } from '@storybook/api';
 import EditorDemo, { EditorDemoProps } from ".";
 
 export default {
-  title: "EditorDemo",
+  title: "Editor",
   component: EditorDemo,
   argTypes: {
   },
@@ -15,7 +15,7 @@ export default {
 const Template: Story<EditorDemoProps> = (args: EditorDemoProps) => <EditorDemo {...args} />;
 
 // Reuse that template for creating different stories
-export const BasicEditorDemo = Template.bind({});
-BasicEditorDemo.args = {
+export const Demo = Template.bind({});
+Demo.args = {
   toolbarPlacement: 'top'
 };

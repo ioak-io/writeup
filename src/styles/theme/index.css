@@ -1,5 +1,7 @@
 @import './theme-black.css';
+@import './theme-black-extended.css';
 @import './theme-white.css';
+@import './theme-white-extended.css';
 
 .writeup-light {
     color: var(--theme-black-900);
