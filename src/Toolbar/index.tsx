@@ -6,7 +6,7 @@ import ContextBar from './ContextBar';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
-const Toolbar = ({ editor, children }: ToolbarPropsType) => {
+const Toolbar = ({ editor, placement, children }: ToolbarPropsType) => {
     const [contextBar, setContextBar] = useState<any>();
     const [addTableWizard, setAddTableWizard] = useState<boolean>(false);
     if (!editor) {
@@ -50,7 +50,7 @@ const Toolbar = ({ editor, children }: ToolbarPropsType) => {
     }
 
     return (
-        <div className="writeup-toolbar">
+        <div className={`writeup-toolbar writeup-toolbar--placement-${placement}`}>
             {/* <button onClick={() => editor.chain().focus().unsetTextAlign().run()}>unsetTextAlign</button> */}
             {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}>
                 hard break

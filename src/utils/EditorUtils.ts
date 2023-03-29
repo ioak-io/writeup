@@ -1,5 +1,6 @@
 import StarterKit from '@tiptap/starter-kit'
 import Color from '@tiptap/extension-color';
+import FontFamily from '@tiptap/extension-font-family'
 import TextStyle from '@tiptap/extension-text-style';
 import Text from '@tiptap/extension-text';
 import TextAlign from '@tiptap/extension-text-align';
@@ -16,6 +17,8 @@ import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
 import Link from '@tiptap/extension-link'
 import { useEditor } from '@tiptap/react';
 
@@ -52,6 +55,9 @@ export const getEditorConfig = () => {
             TableRow,
             TableHeader,
             TableCell,
+            FontFamily.configure({
+                types: ['textStyle'],
+              }),
             Link.configure({
                 HTMLAttributes: {
                     class: 'my-custom-class',
@@ -64,6 +70,8 @@ export const getEditorConfig = () => {
                 },
                 multicolor: true,
             }),
+            Subscript,
+            Superscript,
             TaskList.configure({
                 HTMLAttributes: {
                     class: 'my-custom-class',

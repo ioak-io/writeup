@@ -31,6 +31,9 @@ import TaskListComponent from '../Toolbar/TaskList';
 import { getEditorConfig } from '../utils/EditorUtils';
 import Divider from '../Toolbar/Divider';
 import Link from '../Toolbar/Link';
+import Subscript from '../Toolbar/Subscript';
+import SuperScript from '../Toolbar/SuperScript';
+import FontFamilyDropdown from '../Toolbar/FontFamilyDropdown';
 
 export type EditorDemoProps = {
 
@@ -43,16 +46,16 @@ const EditorDemo = (props: EditorDemoProps) => {
         <>
             <div id="editor">
                 <EditorContent editor={editor} />
-                <Toolbar editor={editor}>
-                    <Undo editor={editor} />
-                    <Redo editor={editor} />
-                    <Divider />
+                <Toolbar editor={editor} placement="bottom">
                     <Bold editor={editor} />
                     <Italic editor={editor} />
                     <UnderlineComponent editor={editor} />
                     <Strikethrough editor={editor} />
+                    <Subscript editor={editor} />
+                    <SuperScript editor={editor} />
                     <HeadingDropdown editor={editor} />
                     <AlignmentDropdown editor={editor} />
+                    <FontFamilyDropdown editor={editor} />
                     <AlignLeft editor={editor} />
                     <AlignCenter editor={editor} />
                     <AlignRight editor={editor} />
@@ -74,6 +77,9 @@ const EditorDemo = (props: EditorDemoProps) => {
                         imageUploadURL='http://localhost:4000/api/upload/writeup' />
                     <AddTable editor={editor} />
                     <AddYoutubeVideo editor={editor} />
+                    <Divider />
+                    <Undo editor={editor} />
+                    <Redo editor={editor} />
                 </Toolbar>
             </div>
         </>
