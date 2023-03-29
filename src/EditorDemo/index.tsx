@@ -34,9 +34,10 @@ import Link from '../Toolbar/Link';
 import Subscript from '../Toolbar/Subscript';
 import SuperScript from '../Toolbar/SuperScript';
 import FontFamilyDropdown from '../Toolbar/FontFamilyDropdown';
+import Editor from '../Editor';
 
 export type EditorDemoProps = {
-
+    toolbarPlacement?: 'top' | 'bottom';
 }
 
 const EditorDemo = (props: EditorDemoProps) => {
@@ -45,8 +46,7 @@ const EditorDemo = (props: EditorDemoProps) => {
     return (
         <>
             <div id="editor">
-                <EditorContent editor={editor} />
-                <Toolbar editor={editor} placement="bottom">
+                <Editor editor={editor} toolbarPlacement={props.toolbarPlacement}>
                     <Bold editor={editor} />
                     <Italic editor={editor} />
                     <UnderlineComponent editor={editor} />
@@ -80,7 +80,7 @@ const EditorDemo = (props: EditorDemoProps) => {
                     <Divider />
                     <Undo editor={editor} />
                     <Redo editor={editor} />
-                </Toolbar>
+                </Editor>
             </div>
         </>
     )

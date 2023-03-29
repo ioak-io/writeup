@@ -17,7 +17,5 @@ const Template: Story<EditorDemoProps> = (args: EditorDemoProps) => <EditorDemo 
 // Reuse that template for creating different stories
 export const BasicEditorDemo = Template.bind({});
 BasicEditorDemo.args = {
-  label: "First name",
-  value: "",
-  placeholder: 'Lorem ipsum dolor sit',
+  toolbarPlacement: 'top'
 };

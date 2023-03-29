@@ -6,9 +6,14 @@ import ContextBar from './ContextBar';
 
 // import AlignLeft from '../../icons/feather/align-left.svg';
 
-const Toolbar = ({ editor, placement, children }: ToolbarPropsType) => {
-    const [contextBar, setContextBar] = useState<any>();
-    const [addTableWizard, setAddTableWizard] = useState<boolean>(false);
+export type ToolbarProps = {
+    editor: any;
+    placement?: 'top' | 'bottom';
+    children: any;
+    onContextBarChange: any;
+}
+
+const Toolbar = ({ editor, placement, children, ...props }: ToolbarProps) => {
     if (!editor) {
         return null
     }
@@ -41,12 +46,7 @@ const Toolbar = ({ editor, placement, children }: ToolbarPropsType) => {
     // }, [widthRef.current, heightRef.current])
 
     const onContextBarChange = (detail: any) => {
-        console.log(detail);
-        setContextBar(detail);
-    }
-
-    const toggleAddTableWizard = () => {
-        setAddTableWizard(!addTableWizard);
+        props.onContextBarChange(detail);
     }
 
     return (
@@ -57,10 +57,9 @@ const Toolbar = ({ editor, placement, children }: ToolbarPropsType) => {
             </button> */}
             <div className="writeup-toolbar-main">
                 {React.Children.map(children, (child: any) => {
-                    return React.cloneElement(child, { onContextBarChange, toggleAddTableWizard })
+                    return React.cloneElement(child, { onContextBarChange })
                 })}
             </div>
-            <ContextBar content={contextBar} editor={editor} />
         </div>
     )
 }
