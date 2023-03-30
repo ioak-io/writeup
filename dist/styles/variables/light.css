@@ -1,0 +1,16 @@
+.writeup-light {
+    --writeup-background-color: var(--theme-white-100);
+    --writeup-color: var(--theme-white-100i);
+    --writeup-border-color: var(--theme-white-500);
+    --writeup-border-color-strong: var(--theme-white-900);
+
+    --writeup-contextbar-background-color: var(--theme-white-300);
+    --writeup-contextbar-button-background-color-hover: var(--theme-white-600);
+
+    --writeup-toolbar-button-background-color-hover: var(--theme-white-400);
+    --writeup-toolbar-button-background-color-active: var(--theme-white-500);
+    --writeup-toolbar-button-color-disabled: var(--theme-white-800);
+
+    --writeup-toolbar-button-color-hover: var(--theme-white-400i);
+    --writeup-toolbar-button-color-active: var(--theme-white-600i);
+}

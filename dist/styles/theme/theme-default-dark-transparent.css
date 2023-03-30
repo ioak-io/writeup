@@ -1,0 +1,23 @@
+.writeup-dark {
+    --theme-default-transparent-50: #86898a10;
+    --theme-default-transparent-100: #86898a20;
+    --theme-default-transparent-200: #86898a30;
+    --theme-default-transparent-300: #86898a40;
+    --theme-default-transparent-400: #86898a50;
+    --theme-default-transparent-500: #86898a60;
+    --theme-default-transparent-600: #86898a70;
+    --theme-default-transparent-700: #86898a80;
+    --theme-default-transparent-800: #86898a90;
+    --theme-default-transparent-900: #86898aa0;
+    
+    --theme-default-transparent-50i: #fff;
+    --theme-default-transparent-100i: #fff;
+    --theme-default-transparent-200i: #fff;
+    --theme-default-transparent-300i: #fff;
+    --theme-default-transparent-400i: #fff;
+    --theme-default-transparent-500i: #fff;
+    --theme-default-transparent-600i: #fff;
+    --theme-default-transparent-700i: #fff;
+    --theme-default-transparent-800i: #fff;
+    --theme-default-transparent-900i: #fff;
+}
