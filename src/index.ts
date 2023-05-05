@@ -1,4 +1,5 @@
 import Toolbar from "./Toolbar";
+import Editor from "./Editor";
 import Bold from "./Toolbar/Bold";
 import Italic from "./Toolbar/Italic";
 import Underline from "./Toolbar/Underline";
@@ -25,6 +26,7 @@ import HighlightColor from './Toolbar/HighlightColor';
 import * as EditorUtils from './utils/EditorUtils';
 
 export {
+    Editor,
     Toolbar,
     Bold,
     Italic,
