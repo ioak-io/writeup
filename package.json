@@ -1,6 +1,6 @@
 {
   "name": "@writeup/core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ioak-dev/writeup.git"
+    "url": "git+https://github.com/ioak-io/writeup.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ioak-dev/writeup/issues"
+    "url": "https://github.com/ioak-io/writeup/issues"
   },
-  "homepage": "https://github.com/ioak-dev/writeup#readme",
+  "homepage": "https://github.com/ioak-io/writeup#readme",
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",
