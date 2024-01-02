@@ -2,6 +2,14 @@
 
 @import '../src/style.css';
 
-html body *{
+html body * {
     font-family: 'Roboto', sans-serif;
+}
+
+.writeup-light {
+    background-color: #fcfcfc;
+}
+
+.writeup-dark {
+    background-color: #0c0c0c;
 }
