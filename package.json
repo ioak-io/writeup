@@ -1,5 +1,5 @@
 {
-  "name": "@writeup/core",
+  "name": "writeup",
   "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",

@@ -1,7 +1,0 @@
-@import './light.css';
-@import './dark.css';
-
-* {
-    --writeup-border-radius: 6px;
-    --writeup-button-border-radius: 4px;
-}
