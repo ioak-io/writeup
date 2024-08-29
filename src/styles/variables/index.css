@@ -2,6 +2,6 @@
 @import './dark.css';
 
 * {
-    --writeup-border-radius: 6px;
+    --writeup-border-radius: 2px;
     --writeup-button-border-radius: 4px;
 }

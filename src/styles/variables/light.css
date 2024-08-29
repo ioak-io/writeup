@@ -1,5 +1,5 @@
 .writeup-light {
-    --writeup-background-color: var(--theme-white-100);
+    --writeup-background-color: transparent;
     --writeup-color: var(--theme-white-100i);
     --writeup-border-color: var(--theme-white-500);
     --writeup-border-color-strong: var(--theme-white-900);
