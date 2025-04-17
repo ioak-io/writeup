@@ -1,6 +1,7 @@
 import { themes } from '@storybook/theming';
-import './style.css';
-// import '../src/styles/index.css';
+import { useEffect } from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
+import './style.css'; // or '../src/styles/index.css' if needed
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -12,19 +13,44 @@ export const parameters = {
   },
   darkMode: {
     current: 'light',
-    // Override the default dark theme
     dark: {
-      ...themes.dark, appBg: '#0c0c0c'
-      // , brandImage: "https://oakui.ioak.io/68a913fc49c62842c6b8b78ff12730df.svg" 
+      ...themes.dark,
+      appBg: '#0c0c0c',
     },
-    // Override the default light theme
     light: {
-      ...themes.normal, appBg: '#fcfcfc'
-      // , brandImage: "https://oakui.ioak.io/95e2684ee1b1f201fe4fc534e3859336.svg" 
+      ...themes.normal,
+      appBg: '#fcfcfc',
     },
-    darkClass: 'writeup-dark',
-    lightClass: 'writeup-light',
     stylePreview: true,
-    classTarget: 'html'
-  }
-}
+    classTarget: 'html',
+  },
+};
+
+// Custom decorator to toggle multiple classes for dark/light mode
+export const decorators = [
+  (Story) => {
+    const isDark = useDarkMode();
+
+    useEffect(() => {
+      const classTarget = document.querySelector('html');
+      if (!classTarget) return;
+
+      // Clear all previously set mode classes
+      classTarget.classList.remove(
+        'writeup-dark',
+        'basicui-dark',
+        'writeup-light',
+        'basicui-light'
+      );
+
+      // Apply appropriate class set based on current mode
+      if (isDark) {
+        classTarget.classList.add('writeup-dark', 'basicui-dark');
+      } else {
+        classTarget.classList.add('writeup-light', 'basicui-light');
+      }
+    }, [isDark]);
+
+    return <Story />;
+  },
+];
