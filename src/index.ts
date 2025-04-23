@@ -1,4 +1,5 @@
 import Toolbar from "./Toolbar";
+import DynamicForm from "./DynamicForm";
 import Editor from "./Editor";
 import Bold from "./Toolbar/Bold";
 import Italic from "./Toolbar/Italic";
@@ -24,8 +25,11 @@ import FontColor from './Toolbar/FontColor';
 import HighlightColor from './Toolbar/HighlightColor';
 
 import * as EditorUtils from './utils/EditorUtils';
+import * as DynamicFormTypes from './types/DynamicFormTypes';
 
 export {
+    DynamicForm,
+    DynamicFormTypes,
     Editor,
     Toolbar,
     Bold,

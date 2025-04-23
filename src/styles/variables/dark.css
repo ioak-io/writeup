@@ -1,7 +1,7 @@
 .writeup-dark {
     --writeup-background-color: transparent;
     --writeup-color: var(--theme-black-200i);
-    --writeup-border-color: var(--theme-black-50);
+    --writeup-border-color: var(--basicui-dark-border-color);
     --writeup-border-color-strong: var(--theme-black-extended-50);
 
     --writeup-contextbar-background-color: var(--theme-black-50);

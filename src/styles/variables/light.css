@@ -1,7 +1,7 @@
 .writeup-light {
     --writeup-background-color: transparent;
     --writeup-color: var(--theme-white-100i);
-    --writeup-border-color: var(--theme-white-500);
+    --writeup-border-color: var(--basicui-light-border-color);
     --writeup-border-color-strong: var(--theme-white-900);
 
     --writeup-contextbar-background-color: var(--theme-white-300);

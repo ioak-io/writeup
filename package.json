@@ -1,6 +1,6 @@
 {
   "name": "writeup",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -11,7 +11,7 @@
     "build-storybook": "storybook build",
     "build": "rollup -c --bundleConfigAsCjs && npm run copy-css",
     "prepublishOnly": "npm build",
-    "copy-css": "cp -r ./src/styles/ ./lib/"
+    "copy-css": "shx cp -r src/styles lib/"
   },
   "repository": {
     "type": "git",
@@ -123,6 +123,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "basicui": "file:basicui-1.0.4.tgz"
+    "basicui": "file:basicui-1.0.4.tgz",
+    "shx": "^0.4.0"
   }
 }
