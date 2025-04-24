@@ -1,3 +1,29 @@
+import { OptionsObjectType } from "basicui";
+
+export interface HookContext {
+  space: string;
+  domain: string;
+  operation: "create" | "update" | "patch" | "delete";
+  userId?: string;
+}
+
+interface HookResponse {
+  doc: any;
+  errors: string[];
+}
+
+// Lifecycle hooks for a domain
+export interface SpecHooks {
+  beforeCreate?: (doc: any, context: HookContext) => Promise<HookResponse>;
+  beforeUpdate?: (doc: any, context: HookContext) => Promise<HookResponse>;
+  beforePatch?: (doc: any, context: HookContext) => Promise<HookResponse>;
+  afterCreate?: (doc: any, context: HookContext) => Promise<void>;
+  afterUpdate?: (doc: any, context: HookContext) => Promise<void>;
+  afterPatch?: (doc: any, context: HookContext) => Promise<void>;
+  validate?: (doc: any, context: HookContext) => Promise<string[]>;
+}
+
+
 interface BaseValidation {
   custom?: (value: any) => boolean;
 }
@@ -28,15 +54,59 @@ interface BaseField<TValidation = {}> {
   };
 }
 
+type CommonDisplayOptions = {
+  label?: string;
+  labelDesc?: string;
+  placeholder?: string;
+  tooltip?: string;
+};
+
+// Richtext-specific extension
+export enum ToolbarOption {
+  Bold = "bold",
+  Italic = "italic",
+  Underline = "underline",
+  Strikethrough = "strikethrough",
+  Heading = "heading",
+  AlignLeft = "alignLeft",
+  AlignCenter = "alignCenter",
+  AlignRight = "alignRight",
+  AlignJustify = "alignJustify",
+  BulletList = "bulletList",
+  OrderedList = "orderedList",
+  BlockQuote = "blockQuote",
+  Code = "code",
+  CodeBlock = "codeBlock",
+  FontColor = "fontColor",
+  HighlightColor = "highlightColor",
+  Link = "link",
+  ClearFormatting = "clearFormatting",
+  HorizontalRule = "horizontalRule",
+  Image = "image",
+  AddTable = "addTable",
+  YouTubeVideo = "youTubeVideo",
+  Undo = "undo",
+  Redo = "redo",
+}
+
+// Extend the CommonDisplayOptions interface to add the toolbarOptions
+interface RichTextDisplayOptions extends CommonDisplayOptions {
+  type: "richtext";
+  toolbarOptions?: ToolbarOption[];  // Only supports valid toolbar options
+}
+
+// Other string display options
+interface DefaultStringDisplayOptions extends CommonDisplayOptions {
+  type?: "text" | "textarea" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "select" | "autocomplete";
+  optionsLookupKey?: string;
+}
+
+type StringDisplayOptions = RichTextDisplayOptions | DefaultStringDisplayOptions;
+
 export type StringField = BaseField<StringValidation> & {
   type: 'string';
-  parent?: { domain: string, field: string };
-  displayOptions?: {
-    label?: string; labelDesc?: string;
-    placeholder?: string;
-    tooltip?: string;
-    type?: "text" | "textarea" | "richtext" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  };
+  parent?: { domain: string; field: string };
+  displayOptions?: StringDisplayOptions;
 };
 
 export type NumberField = BaseField<NumberValidation> & {
@@ -46,7 +116,8 @@ export type NumberField = BaseField<NumberValidation> & {
     label?: string; labelDesc?: string;
     placeholder?: string;
     tooltip?: string;
-    type?: "number";
+    type?: "number" | "select" | "autocomplete";
+    optionsLookupKey?: string;
   };
 };
 
@@ -95,12 +166,13 @@ type ObjectArrayField = BaseArrayField & {
 };
 
 type PrimitiveArrayField = BaseArrayField & {
-  itemType: 'string' | 'number' | 'boolean';
+  itemType: 'string' | 'number';
   displayOptions?: {
     label?: string; labelDesc?: string;
     placeholder?: string;
     tooltip?: string;
     type?: "select" | "autocomplete" | "array";
+    optionsLookupKey?: string;
   };
 };
 
@@ -119,14 +191,22 @@ export type SpecDefinition = {
   fields: {
     [field: string]: SpecField;
   };
+  meta?: {
+    hooks?: SpecHooks;
+    children?: { domain: string, field: { parent: string, child: string }, cascadeDelete?: boolean }[];
+  };
 };
 
+
+// UI types
 export interface DynamicFormProps {
   data: any;
   metadata: SpecDefinition;
+  optionsLookupDictionary: { [key: string]: OptionsObjectType[] }
   onChange: (name: string, value: any) => void;
   onSubmit?: (formData: FormData) => void;
   editMode?: boolean;
+  editorConfig?: any;
 }
 
 

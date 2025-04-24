@@ -13,7 +13,7 @@ import OrderedList from '../Toolbar/OrderedList';
 import BlockQuote from '../Toolbar/BlockQuote';
 import HighlightColor from '../Toolbar/HighlightColor';
 import ClearFormatting from '../Toolbar/ClearFormatting';
-import { DynamicFormHandle, SpecDefinition } from '../types/DynamicFormTypes';
+import { DynamicFormHandle, SpecDefinition, ToolbarOption } from '../types/DynamicFormTypes';
 
 const DynamicFormDemo = () => {
   const [formData, setFormData] = useState<any>({
@@ -29,10 +29,13 @@ const DynamicFormDemo = () => {
     subheading3: "Vertigo",
     subheading4: "Vertigo",
     subheading5: "Vertigo",
-    subheading6: "Vertigo"
+    subheading6: "Vertigo",
+    numberSelect: 102,
+    tags: ["t1"]
   });
 
   const submitActionRef = useRef<DynamicFormHandle>(null);
+  const [editMode, setEditMode] = useState(false);
 
   const handleValidate = () => {
     const result = submitActionRef.current?.validate();
@@ -44,6 +47,7 @@ const DynamicFormDemo = () => {
   };
 
   const handleChange = (name: string, value: any) => {
+    console.log(name, value);
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
@@ -52,6 +56,36 @@ const DynamicFormDemo = () => {
   };
 
   const editor = getEditorConfig();
+  const formMetadata2: SpecDefinition = {
+    fields: {
+      "name": {
+        type: "string",
+        required: true,
+        displayOptions: {
+          type: "text",
+          label: "Fragment name"
+        }
+      },
+      "content": {
+        type: "string",
+        required: false,
+        displayOptions: {
+          type: "textarea"
+        }
+      },
+      "labels": {
+        type: "array",
+        required: true,
+        itemType: "string",
+        parent: {
+          domain: "fragmentLabel", field: "reference"
+        },
+        displayOptions: {
+
+        }
+      }
+    }
+  }
 
   const formMetadata: SpecDefinition = {
     fields: {
@@ -71,6 +105,43 @@ const DynamicFormDemo = () => {
           type: "text"
         }
       },
+      description: {
+        type: "string",
+        required: true,
+        displayOptions: {
+          label: "Description",
+          labelDesc: "Lorem ipsum dolor sit",
+          placeholder: "Describe here",
+          tooltip: "Lorem tooltip",
+          type: "richtext",
+          toolbarOptions: [
+            ToolbarOption.Bold,
+            ToolbarOption.Italic,
+            ToolbarOption.Underline,
+            ToolbarOption.AlignLeft,
+            ToolbarOption.AlignCenter,
+            ToolbarOption.AlignRight,
+            ToolbarOption.AlignJustify,
+            ToolbarOption.BulletList,
+            // ToolbarOption.Heading,
+            // ToolbarOption.Heading2,
+            // ToolbarOption.Heading3,
+            // ToolbarOption.ClearFormatting
+          ]
+        }
+      },
+      categoryId: {
+        type: "string",
+        required: true,
+        displayOptions: {
+          label: "Category",
+          labelDesc: "Lorem ipsum dolor sit",
+          placeholder: "Choose a category",
+          tooltip: "Classification",
+          type: "autocomplete",
+          optionsLookupKey: "category"
+        }
+      },
       age: {
         type: "number",
         validate: {
@@ -83,6 +154,17 @@ const DynamicFormDemo = () => {
           placeholder: "Enter age",
           tooltip: "Age must be between 0 and 120",
           type: "number"
+        }
+      },
+      numberSelect: {
+        type: "number",
+        displayOptions: {
+          label: "Number selector",
+          labelDesc: "Lorem ipsum dolor sit",
+          placeholder: "Choose a number",
+          tooltip: "tool tip for the number selector",
+          type: "select",
+          optionsLookupKey: "numberSelect"
         }
       },
       isActive: {
@@ -104,7 +186,24 @@ const DynamicFormDemo = () => {
           label: "Tags",
           labelDesc: "Lorem ipsum dolor sit",
           type: "autocomplete",
-          tooltip: "Add at least one tag"
+          tooltip: "Add at least one tag",
+          optionsLookupKey: "tag"
+        }
+      },
+      tagsFree: {
+        type: "array",
+        itemType: "string",
+        validate: {
+          minItems: 1,
+          maxItems: 10
+        },
+        displayOptions: {
+          label: "Tags free",
+          labelDesc: "Lorem ipsum dolor sit",
+          placeholder: "Type a tag name",
+          type: "array",
+          tooltip: "Add at least one tag",
+          optionsLookupKey: "tag"
         }
       },
       contactInfo: {
@@ -136,7 +235,20 @@ const DynamicFormDemo = () => {
             displayOptions: {
               label: "Phone Numbers",
               labelDesc: "Lorem ipsum dolor sit",
-              type: "select"
+              type: "array"
+            }
+          },
+          preferences: {
+            type: "array",
+            itemType: "string",
+            validate: {
+              minItems: 1
+            },
+            displayOptions: {
+              label: "Preferences",
+              labelDesc: "Lorem ipsum dolor sit",
+              type: "select",
+              optionsLookupKey: "category"
             }
           },
           testarray: {
@@ -186,6 +298,15 @@ const DynamicFormDemo = () => {
               label: "City",
               labelDesc: "Lorem ipsum dolor sit",
               type: "text"
+            }
+          },
+          country: {
+            type: "string",
+            displayOptions: {
+              label: "City",
+              labelDesc: "Lorem ipsum dolor sit",
+              type: "select",
+              optionsLookupKey: "country"
             }
           },
           geo: {
@@ -293,12 +414,41 @@ const DynamicFormDemo = () => {
   return (
     <div className="max-w-md mx-auto p-4">
       <DynamicForm
+        editorConfig={getEditorConfig()}
         ref={submitActionRef}
         metadata={formMetadata}
         data={formData}
+        optionsLookupDictionary={{
+          "category": [
+            { name: "1", value: "Lorem ipsum" },
+            { name: "2", value: "Dolor sit" },
+            { name: "3", value: "ipsum dolor" },
+            { name: "4", value: "lorem sit" },
+            { name: "5", value: "sit ipsum" }
+          ],
+          "numberSelect": [
+            { name: 101, value: "Hundred and one" },
+            { name: 102, value: "Hundred and two" },
+            { name: 103, value: "Hundred and three" },
+            { name: 104, value: "Hundred and four" },
+            { name: 105, value: "Hundred and five" }
+          ],
+          "tag": [
+            { name: "t1", value: "Value 1" },
+            { name: "t2", value: "Value 2" },
+            { name: "t3", value: "Value 3" },
+            { name: "t4", value: "Value 4" }
+          ],
+          "country": [
+            { name: "IN", value: "India" },
+            { name: "DE", value: "Germany" },
+            { name: "FR", value: "France" },
+            { name: "MX", value: "Mexico" }
+          ]
+        }}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        editMode
+        editMode={editMode}
       />
       <div className="mt-4 flex gap-2">
         <Button onClick={() => submitActionRef.current?.submit()} className="bg-blue-600 text-white px-4 py-2 rounded">
@@ -309,6 +459,9 @@ const DynamicFormDemo = () => {
         </Button>
         <Button onClick={handleReset} className="bg-gray-400 text-white px-4 py-2 rounded">
           Reset
+        </Button>
+        <Button onClick={() => setEditMode(!editMode)} className="bg-gray-400 text-white px-4 py-2 rounded">
+          Toggle edit mode
         </Button>
       </div>
     </div>

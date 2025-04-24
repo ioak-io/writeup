@@ -4,7 +4,7 @@ import FormField from './FormField';
 import FormFieldView from './FormFieldView';
 
 const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
-    ({ metadata, data, editMode, onChange, onSubmit }, ref) => {
+    ({ metadata, data, optionsLookupDictionary, editMode, onChange, onSubmit, editorConfig }, ref) => {
         const initialData = React.useRef(data);
 
         const validate = (): ValidationResult => {
@@ -47,10 +47,14 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
                         field={field}
                         value={data[fieldName]}
                         onChange={onChange}
+                        optionsLookupDictionary={optionsLookupDictionary || {}}
                     />
                 </div>
             ) : (
-                <FormFieldView key={fieldName} field={field} value={data[fieldName]} />
+                <div className="writeup-dynamicform-formfield">
+                    <FormFieldView key={fieldName} field={field} value={data[fieldName]}
+                        optionsLookupDictionary={optionsLookupDictionary || {}} />
+                </div>
             )
         );
 
@@ -68,7 +72,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
                 {content}
             </form>
         ) : (
-            <div className="writeup-dynamicform-view">{content}</div>
+            <div className="writeup-dynamicform">{content}</div>
         );
     }
 );
