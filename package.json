@@ -124,6 +124,7 @@
   },
   "dependencies": {
     "basicui": "file:basicui-1.0.4.tgz",
+    "date-fns": "^4.1.0",
     "shx": "^0.4.0"
   }
 }

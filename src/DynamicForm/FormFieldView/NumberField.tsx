@@ -24,7 +24,7 @@ const NumberFieldComponent = ({
       case 'select':
       case 'autocomplete':
         return <p>{renderSelectDisplayValue()}</p>;
-      default:
+      case 'number':
         return <p>{value !== undefined && value !== null ? value : <span>-</span>}</p>;
     }
   };

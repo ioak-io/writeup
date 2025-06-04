@@ -156,3 +156,13 @@ flex: 1;
 .writeup-dynamicform-arrayfield-addaction:hover {
     border-color: var(--basicui-bg-primary-text);
 }
+
+.writeup-dynamicform h1,
+.writeup-dynamicform h2,
+.writeup-dynamicform h3,
+.writeup-dynamicform h4,
+.writeup-dynamicform h5,
+.writeup-dynamicform h6,
+.writeup-dynamicform p {
+    margin: 0;
+}

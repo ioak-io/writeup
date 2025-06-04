@@ -194,8 +194,10 @@ export type SpecDefinition = {
   meta?: {
     hooks?: SpecHooks;
     children?: { domain: string, field: { parent: string, child: string }, cascadeDelete?: boolean }[];
+    ordering?: string[];
   };
 };
+
 
 
 // UI types
@@ -206,7 +208,8 @@ export interface DynamicFormProps {
   onChange: (name: string, value: any) => void;
   onSubmit?: (formData: FormData) => void;
   editMode?: boolean;
-  editorConfig?: any;
+  editor?: any;
+  className?: string;
 }
 
 

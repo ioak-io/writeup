@@ -3,3 +3,5 @@
 @import './variables/index.css';
 @import './common.css';
 @import './dynamicform.css';
+@import './list.css';
+@import './searchbar.css';

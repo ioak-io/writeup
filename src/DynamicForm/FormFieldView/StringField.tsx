@@ -43,8 +43,6 @@ const StringFieldComponent = ({
       case 'select':
       case 'autocomplete':
         return <p>{renderSelectDisplayValue()}</p>;
-      default:
-        return <p>{value || <span>—</span>}</p>;
     }
   };
 

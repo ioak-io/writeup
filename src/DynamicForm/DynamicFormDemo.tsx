@@ -14,6 +14,7 @@ import BlockQuote from '../Toolbar/BlockQuote';
 import HighlightColor from '../Toolbar/HighlightColor';
 import ClearFormatting from '../Toolbar/ClearFormatting';
 import { DynamicFormHandle, SpecDefinition, ToolbarOption } from '../types/DynamicFormTypes';
+import { useEditor } from '@tiptap/react';
 
 const DynamicFormDemo = () => {
   const [formData, setFormData] = useState<any>({
@@ -410,11 +411,10 @@ const DynamicFormDemo = () => {
     }
   };
 
-
   return (
     <div className="max-w-md mx-auto p-4">
       <DynamicForm
-        editorConfig={getEditorConfig()}
+        editor={editor}
         ref={submitActionRef}
         metadata={formMetadata}
         data={formData}

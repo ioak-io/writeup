@@ -30,7 +30,7 @@ const NumberFieldComponent = ({
       return <Select
         name={fieldName} label={display.label} labelDesc={display.labelDesc} placeholder={display.placeholder}
         value={value ? [value.toString()] : []} autocomplete={display.type === "autocomplete"} onChange={handleChange} options={optionsLookupDictionary[field.displayOptions?.optionsLookupKey || ""] || []} />
-    default:
+    case 'number':
       return <Input
         type="number"
         name={fieldName}

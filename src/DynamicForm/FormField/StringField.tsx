@@ -53,13 +53,15 @@ const StringFieldComponent = ({
   field,
   value,
   onChange,
-  optionsLookupDictionary
+  optionsLookupDictionary,
+  editor
 }: {
   fieldName: string;
   field: StringField;
   value: any;
   onChange: (name: string, value: any) => void;
   optionsLookupDictionary: { [key: string]: OptionsObjectType[] };
+  editor?: any;
 }) => {
   const display = field.displayOptions || {};
 
@@ -68,29 +70,31 @@ const StringFieldComponent = ({
   };
 
   if (display.type === 'richtext') {
-    const editor = useEditor({
-      extensions: [StarterKit],
-      content: value,
-      onUpdate: ({ editor }) => {
-        const html = editor.getHTML();
-        onChange(fieldName, html);
-      }
-    });
-
     useEffect(() => {
       if (editor && value !== editor.getHTML()) {
         editor.commands.setContent(value || '');
       }
     }, [value]);
 
-    // Render the toolbar buttons dynamically based on toolbarOptions
+    useEffect(() => {
+      if (!editor) return;
+    
+      const updateHandler = () => {
+        const html = editor.getHTML();
+        onChange(fieldName, html);
+      };
+    
+      editor.on('update', updateHandler);
+    
+      return () => {
+        editor.off('update', updateHandler);
+      };
+    }, [editor, fieldName, onChange]);
+
     const renderToolbarButtons = display.toolbarOptions?.map((option) => {
       const ToolbarButton = toolbarButtons[option as keyof typeof toolbarButtons];
       return ToolbarButton ? <ToolbarButton key={option} editor={editor} /> : null;
     });
-
-    console.log(renderToolbarButtons);
-
 
     return (
       <div>
@@ -108,6 +112,7 @@ const StringFieldComponent = ({
         <Textarea
           name={fieldName}
           label={display.label}
+          labelDesc={display.labelDesc}
           placeholder={display.placeholder}
           value={value}
           onInput={handleChange}
@@ -143,7 +148,7 @@ const StringFieldComponent = ({
           options={optionsLookupDictionary[display.optionsLookupKey || ''] || []}
         />
       );
-    default:
+    case 'text':
       return (
         <Input
           name={fieldName}

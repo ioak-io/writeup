@@ -14,7 +14,8 @@ const FormField = ({
   value,
   onChange,
   optionsLookupDictionary,
-  onRemove
+  onRemove,
+  editor
 }: {
   fieldName: string;
   field: SpecField;
@@ -22,10 +23,11 @@ const FormField = ({
   onChange: (name: string, value: any) => void;
   optionsLookupDictionary: { [key: string]: OptionsObjectType[] };
   onRemove?: () => void;
+  editor?: any;
 }) => {
   switch (field.type) {
     case 'string':
-      return <StringFieldComponent fieldName={fieldName} field={field} value={value} onChange={onChange} optionsLookupDictionary={optionsLookupDictionary} />;
+      return <StringFieldComponent fieldName={fieldName} field={field} value={value} onChange={onChange} optionsLookupDictionary={optionsLookupDictionary} editor={editor} />;
     case 'number':
       return <NumberFieldComponent fieldName={fieldName} field={field} value={value} onChange={onChange} optionsLookupDictionary={optionsLookupDictionary} />;
     case 'boolean':

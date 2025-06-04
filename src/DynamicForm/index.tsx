@@ -4,7 +4,7 @@ import FormField from './FormField';
 import FormFieldView from './FormFieldView';
 
 const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
-    ({ metadata, data, optionsLookupDictionary, editMode, onChange, onSubmit, editorConfig }, ref) => {
+    ({ metadata, data, optionsLookupDictionary, editMode, onChange, onSubmit, editor, className }, ref) => {
         const initialData = React.useRef(data);
 
         const validate = (): ValidationResult => {
@@ -40,7 +40,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
 
         const content = Object.entries(metadata.fields).map(([fieldName, field]) =>
             editMode ? (
-                <div className="writeup-dynamicform-formfield">
+                <div className={`writeup-dynamicform-formfield writeup-dynamicform-formfield--${fieldName}`}>
                     <FormField
                         key={fieldName}
                         fieldName={fieldName}
@@ -48,10 +48,11 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
                         value={data[fieldName]}
                         onChange={onChange}
                         optionsLookupDictionary={optionsLookupDictionary || {}}
+                        editor={editor}
                     />
                 </div>
             ) : (
-                <div className="writeup-dynamicform-formfield">
+                <div className={`writeup-dynamicform-formfield writeup-dynamicform-formfield--${fieldName}`}>
                     <FormFieldView key={fieldName} field={field} value={data[fieldName]}
                         optionsLookupDictionary={optionsLookupDictionary || {}} />
                 </div>
@@ -60,7 +61,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
 
         return editMode ? (
             <form
-                className="writeup-dynamicform"
+                className={`writeup-dynamicform writeup-dynamicform-edit${className ? ` ${className}` : ""}`}
                 onSubmit={e => {
                     e.preventDefault();
                     const result = validate();
@@ -72,7 +73,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
                 {content}
             </form>
         ) : (
-            <div className="writeup-dynamicform">{content}</div>
+            <div className={`writeup-dynamicform writeup-dynamicform-view${className ? ` ${className}` : ""}`}>{content}</div>
         );
     }
 );

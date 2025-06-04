@@ -30,7 +30,7 @@ const EnumFieldComponent = ({
 
   return (
     <div>
-      {display.label && <Label labelDesc={display.labelDesc}>{display.label}</Label>}
+      <Label labelDesc={display.labelDesc}>{display.label}</Label>
       {renderContent()}
     </div>
   );

@@ -19,7 +19,7 @@ const EnumFieldComponent = ({
   if (type === 'radio-group') {
     return (
       <div>
-        {display.label && <Label>{display.label}</Label>}
+        <Label labelDesc={display.labelDesc}>{display.label}</Label>
         <div className="writeup-formfield__radiogroup">
           {field.options.map((option) => (
             <Radio
@@ -37,18 +37,22 @@ const EnumFieldComponent = ({
     );
   }
 
-  return (
-    <Select
-      name={fieldName}
-      label={display.label}
-      labelDesc={display.labelDesc}
-      placeholder={display.placeholder}
-      options={field.options.map((opt) => ({ value: opt.label, name: opt.value }))}
-      value={[value]}
-      onInput={(e: any) => onChange(fieldName, e.currentTarget.value)}
-      autocomplete={type === 'autocomplete'}
-    />
-  );
+  if (type === "autocomplete" || type === "select") {
+    return (
+      <Select
+        name={fieldName}
+        label={display.label}
+        labelDesc={display.labelDesc}
+        placeholder={display.placeholder}
+        options={field.options.map((opt) => ({ value: opt.label, name: opt.value }))}
+        value={[value]}
+        onInput={(e: any) => onChange(fieldName, e.currentTarget.value)}
+        autocomplete={type === 'autocomplete'}
+      />
+    );
+  }
+
+  return <></>
 };
 
 export default EnumFieldComponent;
