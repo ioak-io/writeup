@@ -1,6 +1,6 @@
-# Writeup
+# Powerui
 
-Writeup is a component library that introduces a versatile WYSIWYG editor, built on the dependable Tip Tap editor framework. Its standout feature lies in the provision of a flexible, adaptable toolbar, allowing users to personalize their editing experience by selecting and arranging preferred actions effortlessly.
+Powerui is a component library that introduces a versatile WYSIWYG editor, built on the dependable Tip Tap editor framework. Its standout feature lies in the provision of a flexible, adaptable toolbar, allowing users to personalize their editing experience by selecting and arranging preferred actions effortlessly.
 
 One of its key highlights is the seamless toggling between light and dark modes, catering to diverse user preferences and ensuring an optimal viewing experience. Additionally, it simplifies image attachment, offering server-side storage provisions for efficient management of uploaded visuals.
 
@@ -18,8 +18,8 @@ This project is developed and tested with the following versions:
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/ioak-io/writeup.git`
-2. Navigate to the project directory: `cd writeup`
+1. Clone the repository: `git clone https://github.com/ioak-io/powerui.git`
+2. Navigate to the project directory: `cd powerui`
 3. Install dependencies: `npm install`
 
 ## Usage
@@ -29,7 +29,7 @@ This project is developed and tested with the following versions:
 
 ## Documentation
 
-Access the interactive playground https://writeup.ioak.io
+Access the interactive playground https://powerui.ioak.io
 
 ## Dependency Updates
 

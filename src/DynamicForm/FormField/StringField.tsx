@@ -126,7 +126,7 @@ const StringFieldComponent = ({
     case 'h6':
       return (
         <Input
-          className={`writeup-formelement-heading ${display.type}`}
+          className={`powerui-formelement-heading ${display.type}`}
           name={fieldName}
           label={display.label}
           placeholder={display.placeholder}

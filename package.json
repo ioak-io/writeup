@@ -1,5 +1,5 @@
 {
-  "name": "writeup",
+  "name": "powerui",
   "version": "1.0.2",
   "description": "",
   "main": "lib/index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ioak-io/writeup.git"
+    "url": "git+https://github.com/ioak-io/powerui.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ioak-io/writeup/issues"
+    "url": "https://github.com/ioak-io/powerui/issues"
   },
-  "homepage": "https://github.com/ioak-io/writeup#readme",
+  "homepage": "https://github.com/ioak-io/powerui#readme",
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",

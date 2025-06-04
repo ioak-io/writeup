@@ -36,7 +36,7 @@ const ObjectFieldComponent = ({
       label={label}
       onRemove={onRemove}
     >
-      <div className="writeup-dynamicform-object">
+      <div className="powerui-dynamicform-object">
         {Object.entries(field.fields).map(([childKey, childField]) => (
           <FormField
             key={childKey}

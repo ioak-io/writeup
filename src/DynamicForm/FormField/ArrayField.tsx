@@ -90,8 +90,8 @@ const ArrayFieldComponent: React.FC<ArrayFieldComponentProps> = ({
     }
 
     return (
-      <div key={index} className="writeup-dynamicform-arrayfield__main__item">
-        <div className="writeup-dynamicform-arrayfield__main__item__field">
+      <div key={index} className="powerui-dynamicform-arrayfield__main__item">
+        <div className="powerui-dynamicform-arrayfield__main__item__field">
           <FormField
             fieldName={`${fieldName}[${index}]`}
             field={itemField}
@@ -105,7 +105,7 @@ const ArrayFieldComponent: React.FC<ArrayFieldComponentProps> = ({
             optionsLookupDictionary={optionsLookupDictionary}
           />
         </div>
-        {itemType !== "object" && <div className='writeup-accordion-actionbutton-wrapper'>
+        {itemType !== "object" && <div className='powerui-accordion-actionbutton-wrapper'>
           <button onClick={() => handleRemoveItem(index)} className="basicui-clean-button">
             <SvgIcon height="12px" width="12px">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" /></svg>
@@ -124,7 +124,7 @@ const ArrayFieldComponent: React.FC<ArrayFieldComponentProps> = ({
       labelDesc={display.labelDesc}
     >
       {values.map(renderItem)}
-      <button className='basicui-clean-button writeup-dynamicform-arrayfield-addaction' onClick={handleAddItem}>Add item</button>
+      <button className='basicui-clean-button powerui-dynamicform-arrayfield-addaction' onClick={handleAddItem}>Add item</button>
     </ExpandableSection>
   );
 };

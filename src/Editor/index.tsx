@@ -37,11 +37,11 @@ const Editor = (props: EditorProps) => {
     }, [props.editor, props.onChange]);
 
     return (
-        <div className={`writeup-editor ${(props.editor?.isActive('table') || contextBar) ? 'writeup-editor--contextbar-active' : ''} writeup-editor--toolbar-placement-${props.toolbarPlacement || 'top'}`}>
+        <div className={`powerui-editor ${(props.editor?.isActive('table') || contextBar) ? 'powerui-editor--contextbar-active' : ''} powerui-editor--toolbar-placement-${props.toolbarPlacement || 'top'}`}>
             {props.toolbarPlacement !== "bottom" && <Toolbar editor={props.editor} placement={props.toolbarPlacement} onContextBarChange={onContextBarChange}>
                 {props.children}
             </Toolbar>}
-            <div className='writeup-editor-content'>
+            <div className='powerui-editor-content'>
                 <EditorContent editor={props.editor} />
             </div>
             {props.toolbarPlacement === "bottom" && <Toolbar editor={props.editor} placement={props.toolbarPlacement} onContextBarChange={onContextBarChange}>

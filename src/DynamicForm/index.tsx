@@ -40,7 +40,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
 
         const content = Object.entries(metadata.fields).map(([fieldName, field]) =>
             editMode ? (
-                <div className={`writeup-dynamicform-formfield writeup-dynamicform-formfield--${fieldName}`}>
+                <div className={`powerui-dynamicform-formfield powerui-dynamicform-formfield--${fieldName}`}>
                     <FormField
                         key={fieldName}
                         fieldName={fieldName}
@@ -52,7 +52,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
                     />
                 </div>
             ) : (
-                <div className={`writeup-dynamicform-formfield writeup-dynamicform-formfield--${fieldName}`}>
+                <div className={`powerui-dynamicform-formfield powerui-dynamicform-formfield--${fieldName}`}>
                     <FormFieldView key={fieldName} field={field} value={data[fieldName]}
                         optionsLookupDictionary={optionsLookupDictionary || {}} />
                 </div>
@@ -61,7 +61,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
 
         return editMode ? (
             <form
-                className={`writeup-dynamicform writeup-dynamicform-edit${className ? ` ${className}` : ""}`}
+                className={`powerui-dynamicform powerui-dynamicform-edit${className ? ` ${className}` : ""}`}
                 onSubmit={e => {
                     e.preventDefault();
                     const result = validate();
@@ -73,7 +73,7 @@ const DynamicForm = forwardRef<DynamicFormHandle, DynamicFormProps>(
                 {content}
             </form>
         ) : (
-            <div className={`writeup-dynamicform writeup-dynamicform-view${className ? ` ${className}` : ""}`}>{content}</div>
+            <div className={`powerui-dynamicform powerui-dynamicform-view${className ? ` ${className}` : ""}`}>{content}</div>
         );
     }
 );

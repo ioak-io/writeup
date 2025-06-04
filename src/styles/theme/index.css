@@ -3,10 +3,10 @@
 @import './theme-white.css';
 @import './theme-white-extended.css';
 
-.writeup-light {
+.powerui-light {
     color: var(--theme-black-900);
 }
 
-.writeup-dark {
+.powerui-dark {
     color: var(--theme-white-50);
 }

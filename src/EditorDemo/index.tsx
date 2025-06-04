@@ -74,7 +74,7 @@ const EditorDemo = (props: EditorDemoProps) => {
                     <HorizontalRule editor={editor} />
                     <Divider />
                     <AddImage editor={editor} imageUploadMethod="POST" imageUploadParam='file'
-                        imageUploadURL='http://localhost:4000/api/upload/writeup' />
+                        imageUploadURL='http://localhost:4000/api/upload/powerui' />
                     <AddTable editor={editor} />
                     <AddYoutubeVideo editor={editor} />
                     <Divider />

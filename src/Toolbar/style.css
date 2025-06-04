@@ -1,64 +1,64 @@
-.writeup-toolbar {
+.powerui-toolbar {
     display: flex;
     flex-direction: column;
 }
 
-.writeup-toolbar-main {
+.powerui-toolbar-main {
     padding: 10px 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     /* overflow-x: auto; */
-    background-color: var(--writeup-background-color);
-    border-radius: var(--writeup-border-radius) var(--writeup-border-radius) 0 0;
-    border-bottom: 1px solid var(--writeup-border-color);
+    background-color: var(--powerui-background-color);
+    border-radius: var(--powerui-border-radius) var(--powerui-border-radius) 0 0;
+    border-bottom: 1px solid var(--powerui-border-color);
     grid-gap: 4px;
 }
 
-.writeup-toolbar--placement-bottom .writeup-toolbar-main {
-    border-top: 1px solid var(--writeup-border-color);
+.powerui-toolbar--placement-bottom .powerui-toolbar-main {
+    border-top: 1px solid var(--powerui-border-color);
     border-bottom: none;
-    border-radius: 0 0 var(--writeup-border-radius) var(--writeup-border-radius);
+    border-radius: 0 0 var(--powerui-border-radius) var(--powerui-border-radius);
 }
 
-.writeup-toolbar-main button {
+.powerui-toolbar-main button {
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 30px;
     height: 30px;
     background-color: transparent;
-    color: var(--writeup-color);
+    color: var(--powerui-color);
     border: none;
-    border-radius: var(--writeup-button-border-radius);
+    border-radius: var(--powerui-button-border-radius);
     cursor: pointer;
     transition: 250ms background-color ease-in-out, 250ms color ease-in-out;
 }
 
-.writeup-toolbar-main button:disabled {
-    color: var(--writeup-toolbar-button-color-disabled);
+.powerui-toolbar-main button:disabled {
+    color: var(--powerui-toolbar-button-color-disabled);
 }
 
-.writeup-toolbar-main button:disabled svg {
-    fill: var(--writeup-toolbar-button-color-disabled);
+.powerui-toolbar-main button:disabled svg {
+    fill: var(--powerui-toolbar-button-color-disabled);
 }
 
-.writeup-toolbar-main button svg {
-    fill: var(--writeup-color);
+.powerui-toolbar-main button svg {
+    fill: var(--powerui-color);
     /* padding: 3px; */
     height: 12px;
 }
 
 
-.writeup-toolbar-main button.is-active {
-    background-color: var(--writeup-toolbar-button-background-color-active);
-    color: var(--writeup-toolbar-button-color-active);
+.powerui-toolbar-main button.is-active {
+    background-color: var(--powerui-toolbar-button-background-color-active);
+    color: var(--powerui-toolbar-button-color-active);
 }
 
-.writeup-toolbar-main button:hover,
-.writeup-toolbar-main button:focus {
-    background-color: var(--writeup-toolbar-button-background-color-hover);
-    color: var(--writeup-toolbar-button-color-hover);
+.powerui-toolbar-main button:hover,
+.powerui-toolbar-main button:focus {
+    background-color: var(--powerui-toolbar-button-background-color-hover);
+    color: var(--powerui-toolbar-button-color-hover);
 }
 
 .color-picker {
@@ -100,18 +100,18 @@ input[type="color"]::-moz-color-swatch {
     color: inherit;
     outline: none;
     border: none;
-    border-radius: var(--writeup-button-border-radius);
+    border-radius: var(--powerui-button-border-radius);
 }
 
 .heading-select:hover,
 .heading-select:focus {
-    background-color: var(--writeup-toolbar-button-background-color-hover);
-    color: var(--writeup-toolbar-button-color-hover);
+    background-color: var(--powerui-toolbar-button-background-color-hover);
+    color: var(--powerui-toolbar-button-color-hover);
 }
 
 .heading-select.is-active {
-    background-color: var(--writeup-toolbar-button-background-color-active);
-    color: var(--writeup-toolbar-button-color-active);
+    background-color: var(--powerui-toolbar-button-background-color-active);
+    color: var(--powerui-toolbar-button-color-active);
 }
 
 ul[data-type="taskList"] li {

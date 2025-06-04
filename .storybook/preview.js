@@ -37,17 +37,17 @@ export const decorators = [
 
       // Clear all previously set mode classes
       classTarget.classList.remove(
-        'writeup-dark',
+        'powerui-dark',
         'basicui-dark',
-        'writeup-light',
+        'powerui-light',
         'basicui-light'
       );
 
       // Apply appropriate class set based on current mode
       if (isDark) {
-        classTarget.classList.add('writeup-dark', 'basicui-dark');
+        classTarget.classList.add('powerui-dark', 'basicui-dark');
       } else {
-        classTarget.classList.add('writeup-light', 'basicui-light');
+        classTarget.classList.add('powerui-light', 'basicui-light');
       }
     }, [isDark]);
 

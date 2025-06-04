@@ -23,7 +23,7 @@ const ObjectFieldComponent = ({
       label={label}
       // isReadOnly
     >
-      <div className="writeup-dynamicform-object">
+      <div className="powerui-dynamicform-object">
         {Object.entries(field.fields).map(([childKey, childField]) => (
           <FormFieldView
             key={childKey}

@@ -20,7 +20,7 @@ const EnumFieldComponent = ({
     return (
       <div>
         <Label labelDesc={display.labelDesc}>{display.label}</Label>
-        <div className="writeup-formfield__radiogroup">
+        <div className="powerui-formfield__radiogroup">
           {field.options.map((option) => (
             <Radio
               key={option.value}
