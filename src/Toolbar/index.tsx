@@ -51,16 +51,16 @@ const Toolbar = ({ editor, placement, children, ...props }: ToolbarProps) => {
     }
 
     return (
-        <div className={`writeup-toolbar writeup-toolbar--placement-${placement}`}>
-            {placement === 'bottom' && <div className={`writeup-contextbar`}>
+        <div className={`powerui-toolbar powerui-toolbar--placement-${placement}`}>
+            {placement === 'bottom' && <div className={`powerui-contextbar`}>
                 <ContextBar content={contextBar} editor={editor} />
             </div>}
-            <div className="writeup-toolbar-main">
+            <div className="powerui-toolbar-main">
                 {React.Children.map(children, (child: any) => {
                     return React.cloneElement(child, { onContextBarChange })
                 })}
             </div>
-            {placement !== 'bottom' && <div className={`writeup-contextbar`}>
+            {placement !== 'bottom' && <div className={`powerui-contextbar`}>
                 <ContextBar content={contextBar} editor={editor} />
             </div>}
         </div>

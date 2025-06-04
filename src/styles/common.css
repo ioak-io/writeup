@@ -1,19 +1,19 @@
-.writeup-contextbar-button {
+.powerui-contextbar-button {
   justify-content: center;
   align-items: center;
   padding: 0 10px;
   height: 30px;
-  background-color: var(--writeup-toolbar-button-background-color-hover);
-  color: var(--writeup-color);
+  background-color: var(--powerui-toolbar-button-background-color-hover);
+  color: var(--powerui-color);
   border: none;
-  border-radius: var(--writeup-button-border-radius);
+  border-radius: var(--powerui-button-border-radius);
   cursor: pointer;
   transition: 250ms background-color ease-in-out, 250ms color ease-in-out;
 
   display: grid;
   grid-auto-flow: column;
   column-gap: 4px;
-  background-color: var(--writeup-border-color);
+  background-color: var(--powerui-border-color);
 }
 
 img {
@@ -21,7 +21,7 @@ img {
   height: auto;
 }
 
-.writeup-editor {
-  border: 1px solid var(--writeup-border-color);
-  border-radius: var(--writeup-border-radius);
+.powerui-editor {
+  border: 1px solid var(--powerui-border-color);
+  border-radius: var(--powerui-border-radius);
 }

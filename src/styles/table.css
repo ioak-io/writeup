@@ -28,9 +28,9 @@ table td {
     border: 1px solid var(--theme-white-900);
 }
 
-.writeup-dark table,
-.writeup-dark table th,
-.writeup-dark table td {
+.powerui-dark table,
+.powerui-dark table th,
+.powerui-dark table td {
     border: 1px solid #707070;
 }
 
@@ -39,6 +39,6 @@ table th {
     background-color: var(--theme-white-300);
 }
 
-.writeup-dark table th {
+.powerui-dark table th {
     background-color: var(--theme-black-100);
 }

@@ -1,4 +1,5 @@
 import Toolbar from "./Toolbar";
+import DynamicForm from "./DynamicForm";
 import Editor from "./Editor";
 import Bold from "./Toolbar/Bold";
 import Italic from "./Toolbar/Italic";
@@ -22,10 +23,18 @@ import ClearFormatting from './Toolbar/ClearFormatting';
 import HorizontalRule from './Toolbar/HorizontalRule';
 import FontColor from './Toolbar/FontColor';
 import HighlightColor from './Toolbar/HighlightColor';
+import SearchBar from './SearchBar';
+import List from './List';
+import ListItem from './List/ListItem';
+
+import { SearchBarFilterType } from "./types/SearchBarFilterType";
 
 import * as EditorUtils from './utils/EditorUtils';
+import * as DynamicFormTypes from './types/DynamicFormTypes';
 
 export {
+    DynamicForm,
+    DynamicFormTypes,
     Editor,
     Toolbar,
     Bold,
@@ -50,5 +59,10 @@ export {
     HighlightColor,
     HorizontalRule,
     OrderedList,
-    EditorUtils
+    EditorUtils,
+    SearchBar,
+    List,
+    ListItem,
+
+    type SearchBarFilterType
 }

@@ -1,5 +1,7 @@
 @import './theme/index.css';
-@import './typography.css';
 @import './table.css';
 @import './variables/index.css';
 @import './common.css';
+@import './dynamicform.css';
+@import './list.css';
+@import './searchbar.css';

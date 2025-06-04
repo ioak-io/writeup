@@ -1,5 +1,5 @@
-.writeup-divider {
-    background-color: var(--writeup-border-color);
+.powerui-divider {
+    background-color: var(--powerui-border-color);
     width: 1px;
     height: 24px;
     display: flex;

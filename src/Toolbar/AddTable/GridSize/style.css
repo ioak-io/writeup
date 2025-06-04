@@ -1,12 +1,12 @@
-.writeup-add-table-grid-size {
+.powerui-add-table-grid-size {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.writeup-add-table-grid-size input,
-.writeup-add-table-grid-size button {
+.powerui-add-table-grid-size input,
+.powerui-add-table-grid-size button {
     margin-right: 10px;
 }
 

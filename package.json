@@ -1,6 +1,6 @@
 {
-  "name": "writeup",
-  "version": "1.0.1",
+  "name": "powerui",
+  "version": "1.0.2",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -11,19 +11,19 @@
     "build-storybook": "storybook build",
     "build": "rollup -c --bundleConfigAsCjs && npm run copy-css",
     "prepublishOnly": "npm build",
-    "copy-css": "cp -r ./src/styles/ ./lib/"
+    "copy-css": "shx cp -r src/styles lib/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ioak-io/writeup.git"
+    "url": "git+https://github.com/ioak-io/powerui.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ioak-io/writeup/issues"
+    "url": "https://github.com/ioak-io/powerui/issues"
   },
-  "homepage": "https://github.com/ioak-io/writeup#readme",
+  "homepage": "https://github.com/ioak-io/powerui#readme",
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",
@@ -121,5 +121,10 @@
     "@tiptap/starter-kit": "^2.1.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "basicui": "file:basicui-1.0.4.tgz",
+    "date-fns": "^4.1.0",
+    "shx": "^0.4.0"
   }
 }

@@ -1,15 +1,15 @@
 .ProseMirror {
     outline: none;
     padding: 10px 10px;
-    background-color: var(--writeup-background-color);
-    border-radius: 0 0 var(--writeup-border-radius) var(--writeup-border-radius);
+    background-color: var(--powerui-background-color);
+    border-radius: 0 0 var(--powerui-border-radius) var(--powerui-border-radius);
 }
 
-.writeup-editor--toolbar-placement-bottom .ProseMirror {
-    border-radius: var(--writeup-border-radius) var(--writeup-border-radius) 0 0;
+.powerui-editor--toolbar-placement-bottom .ProseMirror {
+    border-radius: var(--powerui-border-radius) var(--powerui-border-radius) 0 0;
 }
 
-.writeup-editor--toolbar-placement-top.writeup-editor--contextbar-active .ProseMirror {
+.powerui-editor--toolbar-placement-top.powerui-editor--contextbar-active .ProseMirror {
     border-radius: 0;
 }
 
