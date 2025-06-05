@@ -1,7 +1,9 @@
 import React, { ReactElement, ReactNode, isValidElement, useEffect, useState } from "react";
 import ListItemInternal from "./ListItemInternal";
+import { SpecDefinition } from "../types/DynamicFormTypes";
 
 export interface ListProps {
+    specDefinition: SpecDefinition;
     data: ListItemType[];
     onClick?: (id: string) => void;
     children?: ReactNode;
@@ -57,6 +59,7 @@ const List = (props: ListProps) => {
                     onSelect={props.onSelect}
                     showSelectOnRight={props.showSelectOnRight}
                     showCollapse={props.showCollapse}
+                    specDefinition={props.specDefinition}
                 >
                     {child}
                 </ListItemInternal>
@@ -102,6 +105,7 @@ const List = (props: ListProps) => {
                             onSelect={props.onSelect}
                             showSelectOnRight={props.showSelectOnRight}
                             showCollapse={props.showCollapse}
+                            specDefinition={props.specDefinition}
                         />
                     ))}
             </div>

@@ -1,20 +1,8 @@
-""// DynamicFormDemo.tsx (Rewritten with SpecField types)
 import React, { useRef, useState } from 'react';
 import { Button } from 'basicui';
 import DynamicForm from '.';
 import { getEditorConfig } from '../utils/EditorUtils';
-import Editor from '../Editor';
-import HeadingDropdown from '../Toolbar/HeadingDropdown';
-import Bold from '../Toolbar/Bold';
-import Italic from '../Toolbar/Italic';
-import Underline from '../Toolbar/Underline';
-import BulletList from '../Toolbar/BulletList';
-import OrderedList from '../Toolbar/OrderedList';
-import BlockQuote from '../Toolbar/BlockQuote';
-import HighlightColor from '../Toolbar/HighlightColor';
-import ClearFormatting from '../Toolbar/ClearFormatting';
 import { DynamicFormHandle, SpecDefinition, ToolbarOption } from '../types/DynamicFormTypes';
-import { useEditor } from '@tiptap/react';
 
 const DynamicFormDemo = () => {
   const [formData, setFormData] = useState<any>({

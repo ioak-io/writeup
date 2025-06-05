@@ -1,9 +1,8 @@
-import { OptionsObjectType } from "basicui";
-
 export interface HookContext {
   space: string;
   domain: string;
-  operation: "create" | "update" | "patch" | "delete";
+  operation: "create" | "update" | "patch" | "delete" | "generate";
+  payload: any;
   userId?: string;
 }
 
@@ -20,13 +19,16 @@ export interface SpecHooks {
   afterCreate?: (doc: any, context: HookContext) => Promise<void>;
   afterUpdate?: (doc: any, context: HookContext) => Promise<void>;
   afterPatch?: (doc: any, context: HookContext) => Promise<void>;
+  beforeGenerate?: (doc: any, context: HookContext) => Promise<HookResponse>;
+  afterGenerate?: (doc: any, context: HookContext) => Promise<HookResponse>;
   validate?: (doc: any, context: HookContext) => Promise<string[]>;
+  shapeResponse?: (doc: any, context: HookContext) => Promise<HookResponse>;
 }
-
 
 interface BaseValidation {
   custom?: (value: any) => boolean;
 }
+
 interface StringValidation {
   minLength?: number;
   maxLength?: number;
@@ -47,7 +49,8 @@ interface BaseField<TValidation = {}> {
   required?: boolean;
   validate?: TValidation & BaseValidation;
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     placeholder?: string;
     tooltip?: string;
     [key: string]: any;
@@ -89,13 +92,11 @@ export enum ToolbarOption {
   Redo = "redo",
 }
 
-// Extend the CommonDisplayOptions interface to add the toolbarOptions
 interface RichTextDisplayOptions extends CommonDisplayOptions {
   type: "richtext";
-  toolbarOptions?: ToolbarOption[];  // Only supports valid toolbar options
+  toolbarOptions?: ToolbarOption[];
 }
 
-// Other string display options
 interface DefaultStringDisplayOptions extends CommonDisplayOptions {
   type?: "text" | "textarea" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "select" | "autocomplete";
   optionsLookupKey?: string;
@@ -111,9 +112,10 @@ export type StringField = BaseField<StringValidation> & {
 
 export type NumberField = BaseField<NumberValidation> & {
   type: 'number';
-  parent?: { domain: string, field: string };
+  parent?: { domain: string; field: string };
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     placeholder?: string;
     tooltip?: string;
     type?: "number" | "select" | "autocomplete";
@@ -124,7 +126,8 @@ export type NumberField = BaseField<NumberValidation> & {
 export type BooleanField = BaseField & {
   type: 'boolean';
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     type?: "checkbox";
   };
 };
@@ -133,7 +136,8 @@ export type EnumField = BaseField & {
   type: 'enum';
   options: { label: string; value: string }[];
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     placeholder?: string;
     tooltip?: string;
     type?: "radio-group" | "select" | "autocomplete";
@@ -146,7 +150,8 @@ export type ObjectField = BaseField & {
     [field: string]: SpecField;
   };
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     type?: "group";
   };
 };
@@ -160,7 +165,8 @@ type BaseArrayField = BaseField<ArrayValidation> & {
 type ObjectArrayField = BaseArrayField & {
   itemType: 'object';
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     type?: 'array';
   };
 };
@@ -168,7 +174,8 @@ type ObjectArrayField = BaseArrayField & {
 type PrimitiveArrayField = BaseArrayField & {
   itemType: 'string' | 'number';
   displayOptions?: {
-    label?: string; labelDesc?: string;
+    label?: string;
+    labelDesc?: string;
     placeholder?: string;
     tooltip?: string;
     type?: "select" | "autocomplete" | "array";
@@ -178,7 +185,6 @@ type PrimitiveArrayField = BaseArrayField & {
 
 export type ArrayField = ObjectArrayField | PrimitiveArrayField;
 
-
 export type SpecField =
   | StringField
   | NumberField
@@ -187,20 +193,113 @@ export type SpecField =
   | ObjectField
   | ArrayField;
 
+// === LLM Generation Support ===
+
+export type GenerationTarget =
+  | { type: "field"; field: string }
+  | { type: "childRecords"; domain: string; parentField: string };
+
+export interface PromptTemplate {
+  prompt: string;
+  variables: string[];
+}
+
+export interface LLMGenerationSpec {
+  id: string;
+  description?: string;
+
+  target: GenerationTarget;
+  prompt: PromptTemplate;
+
+  options?: {
+    model?: string;
+    temperature?: number;
+    maxTokens?: number;
+  };
+
+  postProcess?: {
+    mapFields?: { [generatedField: string]: string };
+    validate?: boolean;
+  };
+}
+
+// === Generation LLM Support ===
+
+export type SpecDisplayOptions = {
+  list: {
+    header?: {
+      title?: string;
+      subtitle?: string;
+      icon?: string; // e.g., material-icon or URL
+      showSearch?: boolean;
+      filters?: Array<{
+        field: string;
+        type: "text" | "select" | "date";
+        label?: string;
+        optionsLookupKey?: string;
+      }>;
+      actions?: Array<{
+        type: "button" | "link";
+        label: string;
+        icon?: string;
+        action: "create" | "export" | string; // supports custom actions
+        visibleIf?: string; // optional expression string or condition
+      }>;
+    };
+    fields: Array<{
+      key: string;
+      format?: "date" | "title" | "summary" | "html" | "tags" | "boolean";
+    }>;
+    rowActions?: Array<{
+      type: "icon" | "button";
+      icon?: string;
+      label?: string;
+      action: "edit" | "delete" | "view" | string;
+      confirm?: boolean;
+      visibleIf?: string;
+    }>;
+  };
+  item: {
+    header?: {
+      title?: string;
+      subtitle?: string;
+      actions?: Array<{
+        type: "button" | "link";
+        label: string;
+        action: "edit" | "delete" | "custom";
+        icon?: string;
+        confirm?: boolean;
+        visibleIf?: string;
+      }>;
+    };
+  };
+}
+
 export type SpecDefinition = {
+  displayOptions?: SpecDisplayOptions,
   fields: {
     [field: string]: SpecField;
   };
   meta?: {
     hooks?: SpecHooks;
-    children?: { domain: string, field: { parent: string, child: string }, cascadeDelete?: boolean }[];
+    children?: {
+      domain: string;
+      field: { parent: string; child: string };
+      cascadeDelete?: boolean;
+    }[];
     ordering?: string[];
+    generation?: LLMGenerationSpec[];
   };
 };
 
 
 
 // UI types
+
+export interface OptionsObjectType {
+  name: string | number;
+  value: string;
+}
 export interface DynamicFormProps {
   data: any;
   metadata: SpecDefinition;

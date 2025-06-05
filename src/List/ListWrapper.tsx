@@ -6,112 +6,157 @@ import ListItem from "./ListItem";
  * Component to render drop down input form element. Supports multi select and auto complete features
  */
 
-const EXAMPLE_DATA: ListItemType[] = [
+import { customAlphabet } from 'nanoid';
+import { SpecDefinition } from "../types/DynamicFormTypes";
+
+const alphanumericAlphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const nanoid = customAlphabet(alphanumericAlphabet, 8);
+
+export const fragmentSpec: SpecDefinition = {
+    "displayOptions": {
+        "list": {
+            "header": {
+                "title": "Fragment list",
+                "subtitle": "List of fragments in the system"
+            },
+            "fields": [
+                {
+                    "key": "name",
+                    "format": "title"
+                },
+                {
+                    "key": "content",
+                    "format": "summary"
+                }
+            ]
+        },
+        "item": {
+            "header": {
+                "title": "View a selected fragment",
+                "subtitle": "Lorem ipsum dolor sit"
+            }
+        }
+    },
+    "fields": {
+        "name": {
+            "type": "string",
+            "required": true,
+            "displayOptions": {
+                "type": "h2"
+            }
+        },
+        "content": {
+            "type": "string",
+            "required": false,
+            "displayOptions": {
+                "type": "textarea"
+            }
+        },
+        "labels": {
+            "type": "array",
+            "required": false,
+            "itemType": "string",
+            "parent": {
+                "domain": "fragmentLabel",
+                "field": "reference"
+            },
+            "displayOptions": {
+                "type": "autocomplete",
+                "label": "Labels"
+            }
+        }
+    },
+    "meta": {
+        "hooks": {},
+        "children": [
+            {
+                "domain": "fragmentVersion",
+                "field": {
+                    "parent": "reference",
+                    "child": "fragmentReference"
+                },
+                "cascadeDelete": true
+            },
+            {
+                "domain": "fragmentInsight",
+                "field": {
+                    "parent": "reference",
+                    "child": "fragmentReference"
+                },
+                "cascadeDelete": true
+            }
+        ]
+    }
+};
+
+const EXAMPLE_DATA: any[] = [
     {
-        "id": "1",
-        "category": "Fiction",
-        "summary": "In a distant future where humanity has colonized the stars, a rogue pilot is caught in a web of political intrigue, interstellar warfare, and forbidden love. As galaxies collide and secrets unravel, she must choose between loyalty to her crew and the survival of the universe itself.",
-        "title": "Galactic Drift",
+        "id": "680a1f49a59d01329a1e0237",
+        "reference": "fP9ntqw7",
+        "createdBy": "653603227833a800175f1ea2",
+        "createdAt": "2025-04-24T11:23:53.258Z",
+        "updatedBy": "653603227833a800175f1ea2",
+        "updatedAt": "2025-04-24T11:23:53.258Z",
+        "name": "Into the water puddle",
+        "content": "<p>all new changesbgfh</p>",
         "labels": [
-            { "id": "1", "value": "Sci-Fi" },
-            { "id": "2", "value": "Adventure" }
-        ],
-        "createdAt": "2025-04-16T10:00:00Z"
+            "aCwRYuw8"
+        ]
     },
     {
-        "id": "2",
-        "category": "Non-Fiction",
-        "summary": "This book delves deep into the inner workings of modern economics, unpacking the forces that shape our financial world. From inflation and interest rates to the psychology of markets, it offers a clear, engaging look at the system that governs our everyday lives.",
-        "title": "Money Talks",
-        "labels": [
-            { "id": "1", "value": "Economics" }
-        ],
-        "createdAt": "2025-04-15T09:15:00Z"
+        "id": "68107bc9c01934a898d61751",
+        "reference": "WjgUkPuk",
+        "createdBy": "653603227833a800175f1ea2",
+        "createdAt": "2025-04-29T07:12:09.629Z",
+        "updatedBy": "653603227833a800175f1ea2",
+        "updatedAt": "2025-04-29T07:12:09.629Z",
+        "name": "Scene No 1",
+        "content": "<p>auto</p>",
+        "labels": []
     },
     {
-        "id": "3",
-        "category": "Fantasy",
-        "summary": "In a land where magic is both feared and revered, a young outcast discovers an ancient power buried deep within him. As kingdoms prepare for war, he must rise to become the mage he was destined to be, facing dragons, traitors, and the darkness in his own heart.",
-        "title": "The Mage's War",
-        "labels": [
-            { "id": "1", "value": "Magic" },
-            { "id": "2", "value": "Dragons" },
-            { "id": "3", "value": "Battle" }
-        ],
-        "createdAt": "2025-04-14T13:30:00Z"
+        "id": "68107bdbc01934a898d6175a",
+        "reference": "tTN3WymX",
+        "createdBy": "653603227833a800175f1ea2",
+        "createdAt": "2025-04-29T07:12:27.407Z",
+        "updatedBy": "653603227833a800175f1ea2",
+        "updatedAt": "2025-04-29T07:12:27.407Z",
+        "name": "Scene No 2",
+        "content": "<p>Linda rushes off to meet Johnny and the Potters to go on holiday.  A telegram arrives informing them that Julia has turned him down.  Seeing her while in midhandspring Johnny falls on his stomach rather than finishing.  They discuss hiring servants to work in Julia and Johnnys new home which he also just finds out about.  The group spends a joyful time together and Julia and Edward Sr.  Hoping to patch things up between Johnny and Julia Linda visits the Potters and finds them packing for a voyage to Europe.  Johnny is doing a back flip in the ships hallway when Linda arrives.  On New Years Eve upset that she did not get to throw the engagement party she was promised Linda refuses to come downstairs.</p>",
+        "labels": []
     },
     {
-        "id": "4",
-        "category": "Biography",
-        "summary": "Told through intimate stories and unseen personal writings, this biography traces the incredible journey of a cultural icon. From humble beginnings to global recognition, it reveals the trials, triumphs, and humanity behind the spotlight.",
-        "title": "Beyond the Fame",
-        "labels": [],
-        "createdAt": "2025-04-13T08:00:00Z"
+        "id": "68107be2c01934a898d61763",
+        "reference": "yfvmOB6L",
+        "createdBy": "653603227833a800175f1ea2",
+        "createdAt": "2025-04-29T07:12:34.391Z",
+        "updatedBy": "653603227833a800175f1ea2",
+        "updatedAt": "2025-04-29T07:12:34.391Z",
+        "name": "fdhgg",
+        "content": "<p>gfjhdgj</p>",
+        "labels": []
     },
     {
-        "id": "5",
-        "category": "Mystery",
-        "summary": "When a renowned archaeologist goes missing, Detective Claire Harlow is called to a foggy coastal town with more secrets than answers. As she digs into the case, she uncovers a chilling connection to a string of disappearances spanning decades.",
-        "title": "Shadows in the Fog",
-        "labels": [
-            { "id": "1", "value": "Detective" },
-            { "id": "2", "value": "Crime" }
-        ],
-        "createdAt": "2025-04-12T11:45:00Z"
+        "id": "6818b2f1963da8ed49d41c67",
+        "reference": "biI1KDAy",
+        "createdBy": "653603227833a800175f1ea2",
+        "createdAt": "2025-05-05T12:45:37.981Z",
+        "updatedBy": "653603227833a800175f1ea2",
+        "updatedAt": "2025-05-05T12:45:37.981Z",
+        "name": "Linda rushes off to meet Johnny v2",
+        "content": "<p>Linda rushes off to meet Johnny and the Potters to go on holiday. Meanwhile the Potters arrive at the ship saddened that Johnny had decided to take the job at the bank. They tell her that Johnny is planning to go as well and that he has asked Julia to go with them. Johnny surprises them and explains that he couldnt go through with it and they cheerfully celebrate. As she greets the three of them Johnny takes her hand pulls her to the floor and they kiss. Then Johnny meets Julias vivacious elder sister Linda Katharine Hepburn to whom he confides his plan to take a long holiday from work to find the meaning of life. s plan wont work that marrying Julia on these terms will be more of an encumbrance on his freedom than he can abide. They discuss hiring servants to work in Julia and Johnnys new home which he also just finds out about. Johnny surprises them and explains that he could not go through with it and they cheerfully celebrate.</p>",
+        "labels": []
     },
     {
-        "id": "6",
-        "category": "Science",
-        "summary": "From the Big Bang to black holes, this book takes readers on a thrilling ride through the cosmos. With vivid explanations and awe-inspiring discoveries, it breaks down complex theories and shows how science continues to shape our understanding of the universe.",
-        "title": "Cosmic Code",
-        "labels": [
-            { "id": "1", "value": "Physics" },
-            { "id": "2", "value": "Astronomy" }
-        ],
-        "createdAt": "2025-04-11T07:25:00Z"
-    },
-    {
-        "id": "7",
-        "category": "Fiction",
-        "summary": "Set against the sun-drenched hills of Tuscany, this is the story of two strangers who find each other when they least expect it. As they explore ancient villages and vineyard-covered landscapes, they discover that love can bloom even from the most broken places.",
-        "title": "Tuscan Skies",
-        "labels": [
-            { "id": "1", "value": "Romance" }
-        ],
-        "createdAt": "2025-04-10T19:20:00Z"
-    },
-    {
-        "id": "8",
-        "category": "Horror",
-        "summary": "After inheriting a remote estate, a young woman begins to experience disturbing visions and voices in the night. As the haunting grows stronger, she uncovers the grim history of the house—and realizes the dead may not be resting peacefully.",
-        "title": "The Silent House",
-        "labels": [
-            { "id": "1", "value": "Ghosts" },
-            { "id": "2", "value": "Paranormal" },
-            { "id": "3", "value": "Thriller" }
-        ],
-        "createdAt": "2025-04-09T22:10:00Z"
-    },
-    {
-        "id": "9",
-        "category": "History",
-        "summary": "From the sands of Egypt to the ruins of Mesopotamia, this book uncovers the rise and fall of great empires that shaped civilization. Through vivid storytelling and archaeological insight, it paints a sweeping picture of the ancient world’s power and legacy.",
-        "title": "Empires of Sand",
-        "labels": [
-            { "id": "1", "value": "Ancient" }
-        ],
-        "createdAt": "2025-04-08T14:40:00Z"
-    },
-    {
-        "id": "10",
-        "category": "Technology",
-        "summary": "Artificial Intelligence is no longer science fiction—it’s reshaping industries, ethics, and everyday life. This book explores the rapid evolution of AI, its potential to enhance or endanger humanity, and the urgent questions we must answer now.",
-        "title": "Thinking Machines",
-        "labels": [
-            { "id": "1", "value": "AI" },
-            { "id": "2", "value": "Innovation" }
-        ],
-        "createdAt": new Date()
+        "id": "682c5659eb35d3f23564fd62",
+        "reference": "DKScBUdZ",
+        "createdBy": "653603227833a800175f1ea2",
+        "createdAt": "2025-05-20T10:15:53.360Z",
+        "updatedBy": "653603227833a800175f1ea2",
+        "updatedAt": "2025-05-20T10:15:53.360Z",
+        "name": "fdgdsfg",
+        "content": "<p>fgdfdfgsfg</p>",
+        "labels": []
     }
 ];
 
@@ -279,6 +324,7 @@ const ListWrapper = (props: {
     return (
         <div style={{ padding: "24px" }}>
             <List
+                specDefinition={fragmentSpec}
                 data={props.renderFromChildren ? EXAMPLE_DATA_OWN_CHILDREN_RENDER : EXAMPLE_DATA}
                 onClick={handleClick}
                 selectedItems={selectedItems}
